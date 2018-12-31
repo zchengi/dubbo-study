@@ -1,2 +1,4 @@
 rootProject.name = 'dubbo-study'
+include 'spring-provider'
+include 'spring-consumer'
 

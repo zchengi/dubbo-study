@@ -1,0 +1,30 @@
+group 'com.cheng'
+version '1.0-SNAPSHOT'
+
+ext {
+    zkclientVersion = '0.9'
+    zookeeperVersion = '3.4.9'
+    dubboVersion = "2.5.3"
+    nettyVersion = '4.1.6.Final'
+    commonsLoggingVersion = '1.2'
+    javassistVersion = '3.21.0-GA'
+    springVersion = '4.3.20.RELEASE'
+}
+
+dependencies {
+
+    compile "com.101tec:zkclient:${zkclientVersion}"
+    compile "org.apache.zookeeper:zookeeper:${zookeeperVersion}"
+    compile "com.alibaba:dubbo:${dubboVersion}"
+    compile "io.netty:netty-all:${nettyVersion}"
+    compile "commons-logging:commons-logging:${commonsLoggingVersion}"
+    compile "org.javassist:javassist:${javassistVersion}"
+
+    compile "org.springframework:spring-context:${springVersion}"
+    compile "org.springframework:spring-context-support:${springVersion}"
+    compile "org.springframework:spring-core:${springVersion}"
+    compile "org.springframework:spring-beans:${springVersion}"
+    compile "org.springframework:spring-aop:${springVersion}"
+    compile "org.springframework:spring-aspects:${springVersion}"
+    compile "org.springframework:spring-expression:${springVersion}"
+}
