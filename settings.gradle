@@ -3,3 +3,5 @@ rootProject.name = 'dubbo-study'
 include 'spring-dubbo:provider'
 include 'spring-dubbo:consumer'
 
+include 'springboot-dubbo:provider'
+include 'springboot-dubbo:consumer'

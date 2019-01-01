@@ -1,0 +1,34 @@
+group 'com.cheng'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    ext {
+        springBootVersion = '2.1.1.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+ext {
+    zkclientVersion = '0.10'
+    dubboVersion = '2.0.0'
+}
+
+dependencies {
+
+    compile "com.101tec:zkclient:${zkclientVersion}"
+    compile "com.alibaba.spring.boot:dubbo-spring-boot-starter:${dubboVersion}"
+
+    implementation('org.springframework.boot:spring-boot-starter-web')
+    implementation('org.springframework.boot:spring-boot-starter')
+
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+}
