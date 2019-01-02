@@ -1,7 +1,12 @@
 rootProject.name = 'dubbo-study'
 
-include 'spring-dubbo:provider'
-include 'spring-dubbo:consumer'
+include 'spring-dubbo-provider'
+include 'spring-dubbo-consumer'
+include 'springboot-dubbo-provider'
+include 'springboot-dubbo-consumer'
 
-include 'springboot-dubbo:provider'
-include 'springboot-dubbo:consumer'
+project(':spring-dubbo-provider').projectDir = "$rootDir/spring-dubbo/spring-dubbo-provider" as File
+project(':spring-dubbo-consumer').projectDir = "$rootDir/spring-dubbo/spring-dubbo-consumer" as File
+project(':springboot-dubbo-provider').projectDir = "$rootDir/springboot-dubbo/springboot-dubbo-provider" as File
+project(':springboot-dubbo-consumer').projectDir = "$rootDir/springboot-dubbo/springboot-dubbo-consumer" as File
+
