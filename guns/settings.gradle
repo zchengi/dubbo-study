@@ -1,0 +1,12 @@
+rootProject.name = 'guns'
+include ':guns-admin'
+include ':guns-core'
+include ':guns-rest'
+include ':guns-generator'
+include ':guns-gateway'
+
+project(':guns-admin').projectDir = "$rootDir/guns-admin" as File
+project(':guns-core').projectDir = "$rootDir/guns-core" as File
+project(':guns-rest').projectDir = "$rootDir/guns-rest" as File
+project(':guns-generator').projectDir = "$rootDir/guns-generator" as File
+project(':guns-gateway').projectDir = "$rootDir/guns-gateway" as File

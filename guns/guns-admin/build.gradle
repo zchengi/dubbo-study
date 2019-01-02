@@ -1,0 +1,25 @@
+
+description = 'guns-admin'
+dependencies {
+  compile project(':guns-core')
+  compile project(':guns-generator')
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-aop', version:'2.0.1.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version:'2.0.1.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-cache', version:'2.0.1.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version:'2.0.1.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-devtools', version:'2.0.1.RELEASE'
+    compile(group: 'org.apache.shiro', name: 'shiro-core', version:'1.4.0') {
+exclude(module: 'slf4j-api')
+    }
+    compile group: 'org.apache.shiro', name: 'shiro-spring', version:'1.4.0'
+    compile(group: 'org.apache.shiro', name: 'shiro-ehcache', version:'1.4.0') {
+exclude(module: 'slf4j-api')
+    }
+    compile group: 'org.ehcache', name: 'ehcache', version:'3.3.1'
+    compile group: 'com.github.penggle', name: 'kaptcha', version:'2.3.2'
+    compile group: 'com.google.zxing', name: 'core', version:'3.2.1'
+    compile group: 'com.ibeetl', name: 'beetl', version:'2.8.5'
+    compile group: 'io.springfox', name: 'springfox-swagger2', version:'2.9.2'
+    compile group: 'io.springfox', name: 'springfox-swagger-ui', version:'2.9.2'
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version:'2.0.1.RELEASE'
+}
