@@ -394,7 +394,7 @@ public class ToolUtil {
      * map的key转为小写
      *
      * @param map
-     * @return Map<String , Object>
+     * @return Map<String   ,   Object>
      */
     public static Map<String, Object> caseInsensitiveMap(Map<String, Object> map) {
         Map<String, Object> tempMap = new HashMap<>();

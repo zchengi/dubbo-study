@@ -33,7 +33,6 @@ public class BeetlConfiguration extends BeetlGroupUtilConfiguration {
     DictSelectorTag dictSelectorTag;
 
 
-
     @Override
     public void initOther() {
         groupTemplate.registerFunctionPackage("shiro", new ShiroExt());
@@ -49,13 +48,13 @@ public class BeetlConfiguration extends BeetlGroupUtilConfiguration {
         groupTemplate.registerFunction("env", new Function() {
             @Override
             public String call(Object[] paras, Context ctx) {
-                String key = (String)paras[0];
-                String value =  env.getProperty(key);
-                if(value!=null) {
+                String key = (String) paras[0];
+                String value = env.getProperty(key);
+                if (value != null) {
                     return getStr(value);
                 }
-                if(paras.length==2) {
-                    return (String)paras[1];
+                if (paras.length == 2) {
+                    return (String) paras[1];
                 }
                 return null;
             }

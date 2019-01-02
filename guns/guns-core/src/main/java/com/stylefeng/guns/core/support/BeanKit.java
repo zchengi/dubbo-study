@@ -433,6 +433,25 @@ public class BeanKit {
         private String[] ignoreProperties;
 
         /**
+         * 构造拷贝选项
+         */
+        public CopyOptions() {
+        }
+
+        /**
+         * 构造拷贝选项
+         *
+         * @param editable          限制的类或接口，必须为目标对象的实现接口或父类，用于限制拷贝的属性
+         * @param isIgnoreNullValue 是否忽略空值，当源对象的值为null时，true: 忽略而不注入此值，false: 注入null
+         * @param ignoreProperties  忽略的属性列表，设置一个属性列表，不拷贝这些属性值
+         */
+        public CopyOptions(Class<?> editable, boolean isIgnoreNullValue, String... ignoreProperties) {
+            this.editable = editable;
+            this.isIgnoreNullValue = isIgnoreNullValue;
+            this.ignoreProperties = ignoreProperties;
+        }
+
+        /**
          * 创建拷贝选项
          *
          * @return 拷贝选项
@@ -451,25 +470,6 @@ public class BeanKit {
          */
         public static CopyOptions create(Class<?> editable, boolean isIgnoreNullValue, String... ignoreProperties) {
             return new CopyOptions(editable, isIgnoreNullValue, ignoreProperties);
-        }
-
-        /**
-         * 构造拷贝选项
-         */
-        public CopyOptions() {
-        }
-
-        /**
-         * 构造拷贝选项
-         *
-         * @param editable          限制的类或接口，必须为目标对象的实现接口或父类，用于限制拷贝的属性
-         * @param isIgnoreNullValue 是否忽略空值，当源对象的值为null时，true: 忽略而不注入此值，false: 注入null
-         * @param ignoreProperties  忽略的属性列表，设置一个属性列表，不拷贝这些属性值
-         */
-        public CopyOptions(Class<?> editable, boolean isIgnoreNullValue, String... ignoreProperties) {
-            this.editable = editable;
-            this.isIgnoreNullValue = isIgnoreNullValue;
-            this.ignoreProperties = ignoreProperties;
         }
 
         /**

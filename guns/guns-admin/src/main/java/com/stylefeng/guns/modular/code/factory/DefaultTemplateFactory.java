@@ -22,25 +22,25 @@ public class DefaultTemplateFactory {
     /**
      * 获取所有的模板种类
      */
-    public static List<Map<String,Object>> getDefaultTemplates(){
+    public static List<Map<String, Object>> getDefaultTemplates() {
         ArrayList<Map<String, Object>> templates = new ArrayList<>();
-        templates.add(create("controllerSwitch","controller-控制器模板"));
-        templates.add(create("entitySwitch","entity-实体模板"));
-        templates.add(create("serviceSwitch","service-service模板"));
-        templates.add(create("daoSwitch","dao-dao模板"));
-        templates.add(create("indexPageSwitch","indexPage-首页模板"));
-        templates.add(create("addPageSwitch","addPage-添加页面模板"));
-        templates.add(create("editPageSwitch","editPage-编辑页面模板"));
-        templates.add(create("jsSwitch","indexJs-主页js模板"));
-        templates.add(create("infoJsSwitch","infoJs-详情页js模板"));
-        templates.add(create("sqlSwitch","sql-sql语句模板"));
+        templates.add(create("controllerSwitch", "controller-控制器模板"));
+        templates.add(create("entitySwitch", "entity-实体模板"));
+        templates.add(create("serviceSwitch", "service-service模板"));
+        templates.add(create("daoSwitch", "dao-dao模板"));
+        templates.add(create("indexPageSwitch", "indexPage-首页模板"));
+        templates.add(create("addPageSwitch", "addPage-添加页面模板"));
+        templates.add(create("editPageSwitch", "editPage-编辑页面模板"));
+        templates.add(create("jsSwitch", "indexJs-主页js模板"));
+        templates.add(create("infoJsSwitch", "infoJs-详情页js模板"));
+        templates.add(create("sqlSwitch", "sql-sql语句模板"));
         return templates;
     }
 
     /**
      * 获取默认的参数
      */
-    public static GenQo getDefaultParams(){
+    public static GenQo getDefaultParams() {
         GenQo genQo = new GenQo();
         genQo.setProjectPath(ToolUtil.getWebRootPath(null));
         genQo.setAuthor("stylefeng");
@@ -52,10 +52,10 @@ public class DefaultTemplateFactory {
         return genQo;
     }
 
-    private static Map<String,Object> create(String key,String desc){
+    private static Map<String, Object> create(String key, String desc) {
         HashMap<String, Object> template = new HashMap<>();
-        template.put("key",key);
-        template.put("desc",desc);
+        template.put("key", key);
+        template.put("desc", desc);
         return template;
     }
 }

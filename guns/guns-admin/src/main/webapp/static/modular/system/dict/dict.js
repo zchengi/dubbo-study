@@ -72,7 +72,7 @@ Dict.openDictDetail = function () {
 Dict.delete = function () {
     if (this.check()) {
 
-        var operation = function(){
+        var operation = function () {
             var ajax = new $ax(Feng.ctxPath + "/dict/delete", function (data) {
                 Feng.success("删除成功!");
                 Dict.table.refresh();

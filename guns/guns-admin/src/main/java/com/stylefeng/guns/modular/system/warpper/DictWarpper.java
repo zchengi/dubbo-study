@@ -25,11 +25,11 @@ public class DictWarpper extends BaseControllerWarpper {
         StringBuffer detail = new StringBuffer();
         Integer id = Integer.valueOf(map.get("id").toString());
         List<Dict> dicts = ConstantFactory.me().findInDict(id);
-        if(dicts != null){
+        if (dicts != null) {
             for (Dict dict : dicts) {
-                detail.append(dict.getCode() + ":" +dict.getName() + ",");
+                detail.append(dict.getCode() + ":" + dict.getName() + ",");
             }
-            map.put("detail", ToolUtil.removeSuffix(detail.toString(),","));
+            map.put("detail", ToolUtil.removeSuffix(detail.toString(), ","));
         }
     }
 

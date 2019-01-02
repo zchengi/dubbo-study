@@ -43,6 +43,9 @@ public abstract class AbstractGeneratorConfig {
 
     SqlConfig sqlConfig = new SqlConfig();
 
+    public AbstractGeneratorConfig() {
+    }
+
     protected abstract void config();
 
     public void init() {
@@ -76,9 +79,6 @@ public abstract class AbstractGeneratorConfig {
     public void destory() {
         String outputDir = globalConfig.getOutputDir() + "/TTT";
         FileUtil.deleteDir(new File(outputDir));
-    }
-
-    public AbstractGeneratorConfig() {
     }
 
     public void doMpGeneration() {

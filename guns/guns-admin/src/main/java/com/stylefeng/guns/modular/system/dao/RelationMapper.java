@@ -5,7 +5,7 @@ import com.stylefeng.guns.modular.system.model.Relation;
 
 /**
  * <p>
-  * 角色和菜单关联表 Mapper 接口
+ * 角色和菜单关联表 Mapper 接口
  * </p>
  *
  * @author stylefeng

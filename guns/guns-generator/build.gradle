@@ -1,7 +1,0 @@
-
-description = 'guns-generator'
-dependencies {
-  compile project(':guns-core')
-    compile group: 'com.ibeetl', name: 'beetl', version:'2.8.5'
-    compile group: 'com.baomidou', name: 'mybatis-plus-generate', version:'2.3'
-}

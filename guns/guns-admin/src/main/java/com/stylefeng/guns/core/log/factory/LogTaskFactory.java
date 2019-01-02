@@ -59,7 +59,7 @@ public class LogTaskFactory {
         return new TimerTask() {
             @Override
             public void run() {
-                LoginLog loginLog = LogFactory.createLoginLog(LogType.EXIT, userId, null,ip);
+                LoginLog loginLog = LogFactory.createLoginLog(LogType.EXIT, userId, null, ip);
                 try {
                     loginLogMapper.insert(loginLog);
                 } catch (Exception e) {

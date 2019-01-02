@@ -52,18 +52,18 @@ public class MutiStrFactory {
      * @author fengshuonan
      * @Date 2017/4/27 16:44
      */
-    public static List<Map<String,String>> parseKeyValue(String mutiString){
-        if(ToolUtil.isEmpty(mutiString)){
+    public static List<Map<String, String>> parseKeyValue(String mutiString) {
+        if (ToolUtil.isEmpty(mutiString)) {
             return new ArrayList<>();
-        }else{
-            ArrayList<Map<String,String>> results = new ArrayList<>();
+        } else {
+            ArrayList<Map<String, String>> results = new ArrayList<>();
             String[] items = StrKit.split(StrKit.removeSuffix(mutiString, ITEM_SPLIT), ITEM_SPLIT);
             for (String item : items) {
                 String[] attrs = item.split(ATTR_SPLIT);
                 HashMap<String, String> itemMap = new HashMap<>();
-                itemMap.put(MUTI_STR_CODE,attrs[0]);
-                itemMap.put(MUTI_STR_NAME,attrs[1]);
-                itemMap.put(MUTI_STR_NUM,attrs[2]);
+                itemMap.put(MUTI_STR_CODE, attrs[0]);
+                itemMap.put(MUTI_STR_NAME, attrs[1]);
+                itemMap.put(MUTI_STR_NUM, attrs[2]);
                 results.add(itemMap);
             }
             return results;
@@ -76,18 +76,18 @@ public class MutiStrFactory {
      * @author fengshuonan
      * @Date 2017/4/28 11:06
      */
-    public static List<Map<String,String>> parseIdKeyValue(String mutiString){
-        if(ToolUtil.isEmpty(mutiString)){
+    public static List<Map<String, String>> parseIdKeyValue(String mutiString) {
+        if (ToolUtil.isEmpty(mutiString)) {
             return new ArrayList<>();
-        }else{
-            ArrayList<Map<String,String>> results = new ArrayList<>();
+        } else {
+            ArrayList<Map<String, String>> results = new ArrayList<>();
             String[] items = StrKit.split(StrKit.removeSuffix(mutiString, ITEM_SPLIT), ITEM_SPLIT);
             for (String item : items) {
                 String[] attrs = item.split(ATTR_SPLIT);
                 HashMap<String, String> itemMap = new HashMap<>();
-                itemMap.put(MUTI_STR_CODE,attrs[0]);
-                itemMap.put(MUTI_STR_NAME,attrs[1]);
-                itemMap.put(MUTI_STR_NUM,attrs[2]);
+                itemMap.put(MUTI_STR_CODE, attrs[0]);
+                itemMap.put(MUTI_STR_NAME, attrs[1]);
+                itemMap.put(MUTI_STR_NUM, attrs[2]);
                 results.add(itemMap);
             }
             return results;

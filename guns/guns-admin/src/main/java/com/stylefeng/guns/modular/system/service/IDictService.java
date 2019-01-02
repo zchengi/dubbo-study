@@ -18,12 +18,12 @@ public interface IDictService extends IService<Dict> {
     /**
      * 添加字典
      */
-    void addDict(String dictCode,String dictName,String dictTips, String dictValues);
+    void addDict(String dictCode, String dictName, String dictTips, String dictValues);
 
     /**
      * 编辑字典
      */
-    void editDict(Integer dictId,String dictCode, String dictName,String dictTips, String dicts);
+    void editDict(Integer dictId, String dictCode, String dictName, String dictTips, String dicts);
 
     /**
      * 删除字典

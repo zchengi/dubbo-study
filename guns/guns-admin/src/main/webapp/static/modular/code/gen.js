@@ -84,7 +84,7 @@ $(function () {
     ztree.bindOnClick(Code.onClickDept);
     ztree.init();
     Code.ztreeInstance = ztree;
-    $("#pcodeTree").css('width',$("#parentMenuName").css('width'));
+    $("#pcodeTree").css('width', $("#parentMenuName").css('width'));
 });
 
 Code.set = function (key, value) {

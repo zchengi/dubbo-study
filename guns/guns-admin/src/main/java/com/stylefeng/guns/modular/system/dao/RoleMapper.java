@@ -10,7 +10,7 @@ import java.util.Map;
 
 /**
  * <p>
-  * 角色表 Mapper 接口
+ * 角色表 Mapper 接口
  * </p>
  *
  * @author stylefeng

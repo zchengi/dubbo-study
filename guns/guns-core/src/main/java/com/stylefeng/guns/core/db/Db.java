@@ -60,8 +60,8 @@ public class Db<T> {
      * @param clazz mapper类的类对象
      * @date 2017年2月22日 下午10:31:35
      */
-    public BaseMapper<?> getMapper() {
-        return this.baseMapper;
+    public static <T> T getMapper(Class<T> clazz) {
+        return SpringContextHolder.getBean(clazz);
     }
 
     /**
@@ -71,8 +71,8 @@ public class Db<T> {
      * @param clazz mapper类的类对象
      * @date 2017年2月22日 下午10:31:35
      */
-    public static <T> T getMapper(Class<T> clazz) {
-        return SpringContextHolder.getBean(clazz);
+    public BaseMapper<?> getMapper() {
+        return this.baseMapper;
     }
 
     /**

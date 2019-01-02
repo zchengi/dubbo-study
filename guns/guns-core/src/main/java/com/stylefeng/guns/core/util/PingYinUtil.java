@@ -3,204 +3,160 @@ package com.stylefeng.guns.core.util;
 import java.util.Random;
 
 /***
- * 
+ *
  * 得到中文首字母
- * 
+ *
  * @author lxm_09
- * 
+ *
  */
 
 public class PingYinUtil {
 
-	public static void main(String[] args) {
-		String str = "这是一个测试";
-		System.out.println("中文首字母：" + getPYIndexStr(str, true));
-	}
+    public static void main(String[] args) {
+        String str = "这是一个测试";
+        System.out.println("中文首字母：" + getPYIndexStr(str, true));
+    }
 
-	/**
-	 * 返回首字母
-	 */
-	public static String getPYIndexStr(String strChinese, boolean bUpCase) {
-		try {
-			StringBuffer buffer = new StringBuffer();
+    /**
+     * 返回首字母
+     */
+    public static String getPYIndexStr(String strChinese, boolean bUpCase) {
+        try {
+            StringBuffer buffer = new StringBuffer();
             byte[] b = strChinese.getBytes("GBK");// 把中文转化成byte数组
-			for (int i = 0; i < b.length; i++) {
-				if ((b[i] & 255) > 128) {
-					int char1 = b[i++] & 255;
-					char1 <<= 8;// 左移运算符用“<<”表示，是将运算符左边的对象，向左移动运算符右边指定的位数，并且在低位补零。其实，向左移n位，就相当于乘上2的n次方
-					int chart = char1 + (b[i] & 255);
-					buffer.append(getPYIndexChar((char) chart, bUpCase));
-					continue;
-				}
-				char c = (char) b[i];
-				if (!Character.isJavaIdentifierPart(c))// 确定指定字符是否可以是 Java
-														// 标识符中首字符以外的部分。
-					c = 'A';
-				buffer.append(c);
-			}
-			return buffer.toString();
-		} catch (Exception e) {
-			System.out.println((new StringBuilder()).append("\u53D6\u4E2D\u6587\u62FC\u97F3\u6709\u9519")
-					.append(e.getMessage()).toString());
-		}
-		return null;
-	}
+            for (int i = 0; i < b.length; i++) {
+                if ((b[i] & 255) > 128) {
+                    int char1 = b[i++] & 255;
+                    char1 <<= 8;// 左移运算符用“<<”表示，是将运算符左边的对象，向左移动运算符右边指定的位数，并且在低位补零。其实，向左移n位，就相当于乘上2的n次方
+                    int chart = char1 + (b[i] & 255);
+                    buffer.append(getPYIndexChar((char) chart, bUpCase));
+                    continue;
+                }
+                char c = (char) b[i];
+                if (!Character.isJavaIdentifierPart(c))// 确定指定字符是否可以是 Java
+                    // 标识符中首字符以外的部分。
+                    c = 'A';
+                buffer.append(c);
+            }
+            return buffer.toString();
+        } catch (Exception e) {
+            System.out.println((new StringBuilder()).append("\u53D6\u4E2D\u6587\u62FC\u97F3\u6709\u9519")
+                    .append(e.getMessage()).toString());
+        }
+        return null;
+    }
 
-	/**
-	 * 得到首字母
-	 */
-	private static char getPYIndexChar(char strChinese, boolean bUpCase) {
+    /**
+     * 得到首字母
+     */
+    private static char getPYIndexChar(char strChinese, boolean bUpCase) {
 
-		int charGBK = strChinese;
+        int charGBK = strChinese;
 
-		char result;
+        char result;
 
-		if (charGBK >= 45217 && charGBK <= 45252)
+        if (charGBK >= 45217 && charGBK <= 45252)
 
-			result = 'A';
+            result = 'A';
 
-		else
+        else if (charGBK >= 45253 && charGBK <= 45760)
 
-		if (charGBK >= 45253 && charGBK <= 45760)
+            result = 'B';
 
-			result = 'B';
+        else if (charGBK >= 45761 && charGBK <= 46317)
 
-		else
+            result = 'C';
 
-		if (charGBK >= 45761 && charGBK <= 46317)
+        else if (charGBK >= 46318 && charGBK <= 46825)
 
-			result = 'C';
+            result = 'D';
 
-		else
+        else if (charGBK >= 46826 && charGBK <= 47009)
 
-		if (charGBK >= 46318 && charGBK <= 46825)
+            result = 'E';
 
-			result = 'D';
+        else if (charGBK >= 47010 && charGBK <= 47296)
 
-		else
+            result = 'F';
 
-		if (charGBK >= 46826 && charGBK <= 47009)
+        else if (charGBK >= 47297 && charGBK <= 47613)
 
-			result = 'E';
+            result = 'G';
 
-		else
+        else if (charGBK >= 47614 && charGBK <= 48118)
 
-		if (charGBK >= 47010 && charGBK <= 47296)
+            result = 'H';
 
-			result = 'F';
+        else if (charGBK >= 48119 && charGBK <= 49061)
 
-		else
+            result = 'J';
 
-		if (charGBK >= 47297 && charGBK <= 47613)
+        else if (charGBK >= 49062 && charGBK <= 49323)
 
-			result = 'G';
+            result = 'K';
 
-		else
+        else if (charGBK >= 49324 && charGBK <= 49895)
 
-		if (charGBK >= 47614 && charGBK <= 48118)
+            result = 'L';
 
-			result = 'H';
+        else if (charGBK >= 49896 && charGBK <= 50370)
 
-		else
+            result = 'M';
 
-		if (charGBK >= 48119 && charGBK <= 49061)
+        else if (charGBK >= 50371 && charGBK <= 50613)
 
-			result = 'J';
+            result = 'N';
 
-		else
+        else if (charGBK >= 50614 && charGBK <= 50621)
 
-		if (charGBK >= 49062 && charGBK <= 49323)
+            result = 'O';
 
-			result = 'K';
+        else if (charGBK >= 50622 && charGBK <= 50905)
 
-		else
+            result = 'P';
 
-		if (charGBK >= 49324 && charGBK <= 49895)
+        else if (charGBK >= 50906 && charGBK <= 51386)
 
-			result = 'L';
+            result = 'Q';
 
-		else
+        else if (charGBK >= 51387 && charGBK <= 51445)
 
-		if (charGBK >= 49896 && charGBK <= 50370)
+            result = 'R';
 
-			result = 'M';
+        else if (charGBK >= 51446 && charGBK <= 52217)
 
-		else
+            result = 'S';
 
-		if (charGBK >= 50371 && charGBK <= 50613)
+        else if (charGBK >= 52218 && charGBK <= 52697)
 
-			result = 'N';
+            result = 'T';
 
-		else
+        else if (charGBK >= 52698 && charGBK <= 52979)
 
-		if (charGBK >= 50614 && charGBK <= 50621)
+            result = 'W';
 
-			result = 'O';
+        else if (charGBK >= 52980 && charGBK <= 53688)
 
-		else
+            result = 'X';
 
-		if (charGBK >= 50622 && charGBK <= 50905)
+        else if (charGBK >= 53689 && charGBK <= 54480)
 
-			result = 'P';
+            result = 'Y';
 
-		else
+        else if (charGBK >= 54481 && charGBK <= 55289)
 
-		if (charGBK >= 50906 && charGBK <= 51386)
+            result = 'Z';
 
-			result = 'Q';
+        else
 
-		else
+            result = (char) (65 + (new Random()).nextInt(25));
 
-		if (charGBK >= 51387 && charGBK <= 51445)
+        if (!bUpCase)
 
-			result = 'R';
+            result = Character.toLowerCase(result);
 
-		else
+        return result;
 
-		if (charGBK >= 51446 && charGBK <= 52217)
-
-			result = 'S';
-
-		else
-
-		if (charGBK >= 52218 && charGBK <= 52697)
-
-			result = 'T';
-
-		else
-
-		if (charGBK >= 52698 && charGBK <= 52979)
-
-			result = 'W';
-
-		else
-
-		if (charGBK >= 52980 && charGBK <= 53688)
-
-			result = 'X';
-
-		else
-
-		if (charGBK >= 53689 && charGBK <= 54480)
-
-			result = 'Y';
-
-		else
-
-		if (charGBK >= 54481 && charGBK <= 55289)
-
-			result = 'Z';
-
-		else
-
-			result = (char) (65 + (new Random()).nextInt(25));
-
-		if (!bUpCase)
-
-			result = Character.toLowerCase(result);
-
-		return result;
-
-	}
+    }
 
 }

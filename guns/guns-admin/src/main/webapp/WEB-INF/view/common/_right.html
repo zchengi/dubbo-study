@@ -1,16 +1,18 @@
-<div id="page-wrapper" class="gray-bg dashbard-1">
-            <div class="row border-bottom">
-                <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header"><a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
-                <form role="search" class="navbar-form-custom" method="post" action="search_results.html">
+<div class="gray-bg dashbard-1" id="page-wrapper">
+    <div class="row border-bottom">
+        <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header"><a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i
+                    class="fa fa-bars"></i> </a>
+                <form action="search_results.html" class="navbar-form-custom" method="post" role="search">
                     <div class="form-group">
-                        <input type="text" placeholder="请输入您需要查找的内容 …" class="form-control" name="top-search" id="top-search">
+                        <input class="form-control" id="top-search" name="top-search" placeholder="请输入您需要查找的内容 …"
+                               type="text">
                     </div>
                 </form>
             </div>
             <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown hidden-xs">
-                    <a class="right-sidebar-toggle" aria-expanded="false">
+                    <a aria-expanded="false" class="right-sidebar-toggle">
                         <i class="fa fa-tasks"></i> 主题
                     </a>
                 </li>
@@ -22,7 +24,7 @@
         </button>
         <nav class="page-tabs J_menuTabs">
             <div class="page-tabs-content">
-                <a href="javascript:" class="active J_menuTab" data-id="${ctxPath}/blackboard">首页</a>
+                <a class="active J_menuTab" data-id="${ctxPath}/blackboard" href="javascript:">首页</a>
             </div>
         </nav>
         <button class="roll-nav roll-right J_tabRight"><i class="fa fa-forward"></i>
@@ -31,7 +33,7 @@
             <button class="dropdown J_tabClose" data-toggle="dropdown">关闭操作<span class="caret"></span>
 
             </button>
-            <ul role="menu" class="dropdown-menu dropdown-menu-right">
+            <ul class="dropdown-menu dropdown-menu-right" role="menu">
                 <li class="J_tabShowActive"><a>定位当前选项卡</a>
                 </li>
                 <li class="divider"></li>
@@ -41,10 +43,11 @@
                 </li>
             </ul>
         </div>
-        <a href="logout" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
+        <a class="roll-nav roll-right J_tabExit" href="logout"><i class="fa fa fa-sign-out"></i> 退出</a>
     </div>
     <div class="row J_mainContent" id="content-main">
-        <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="${ctxPath}/blackboard" frameborder="0" data-id="${ctxPath}/blackboard" seamless></iframe>
+        <iframe class="J_iframe" data-id="${ctxPath}/blackboard" frameborder="0" height="100%" name="iframe0" seamless
+                src="${ctxPath}/blackboard" width="100%"></iframe>
     </div>
     <div class="footer">
         <div class="pull-right">&copy; 2016-2017 <a href="http://git.oschina.net/naan1993/guns" target="_blank">guns</a>

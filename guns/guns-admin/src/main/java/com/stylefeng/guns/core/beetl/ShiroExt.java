@@ -32,6 +32,12 @@ public class ShiroExt {
         return SecurityUtils.getSubject();
     }
 
+    public static void main(String[] args) {
+        GroupTemplate gt = new GroupTemplate();
+        gt.registerFunctionPackage("shiro", new ShiroExt());
+
+    }
+
     /**
      * 获取封装的 ShiroUser
      *
@@ -175,11 +181,5 @@ public class ShiroExt {
             return principal.toString();
         }
         return "";
-    }
-
-    public static void main(String[] args) {
-        GroupTemplate gt = new GroupTemplate();
-        gt.registerFunctionPackage("shiro", new ShiroExt());
-
     }
 }

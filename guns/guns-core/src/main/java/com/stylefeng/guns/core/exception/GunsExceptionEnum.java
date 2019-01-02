@@ -30,14 +30,13 @@ public enum GunsExceptionEnum implements ServiceExceptionEnum {
     REQUEST_NULL(400, "请求有错误"),
     SERVER_ERROR(500, "服务器异常");
 
+    private Integer code;
+    private String message;
+
     GunsExceptionEnum(int code, String message) {
         this.code = code;
         this.message = message;
     }
-
-    private Integer code;
-
-    private String message;
 
     @Override
     public Integer getCode() {

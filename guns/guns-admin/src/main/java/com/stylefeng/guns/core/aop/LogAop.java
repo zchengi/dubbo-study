@@ -97,7 +97,7 @@ public class LogAop {
         } else {
             Map<String, String> parameters = HttpKit.getRequestParameters();
             AbstractDictMap dictMap = (AbstractDictMap) dictClass.newInstance();
-            msg = Contrast.parseMutiKey(dictMap,key,parameters);
+            msg = Contrast.parseMutiKey(dictMap, key, parameters);
         }
 
         LogManager.me().executeLog(LogTaskFactory.bussinessLog(user.getId(), bussinessName, className, methodName, msg));

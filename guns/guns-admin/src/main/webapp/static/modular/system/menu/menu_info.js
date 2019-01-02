@@ -167,9 +167,9 @@ $(function () {
     MenuInfoDlg.ztreeInstance = ztree;
 
     //初始化是否是菜单
-    if($("#ismenuValue").val() == undefined){
+    if ($("#ismenuValue").val() == undefined) {
         $("#ismenu").val(0);
-    }else{
+    } else {
         $("#ismenu").val($("#ismenuValue").val());
     }
 });

@@ -2,31 +2,42 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.stylefeng.guns.modular.system.dao.MenuMapper">
 
-	<!-- 通用查询映射结果 -->
-	<resultMap id="BaseResultMap" type="com.stylefeng.guns.modular.system.model.Menu">
-		<id column="id" property="id" />
-		<result column="code" property="code" />
-		<result column="pcode" property="pcode" />
-		<result column="pcodes" property="pcodes" />
-		<result column="name" property="name" />
-		<result column="icon" property="icon" />
-		<result column="url" property="url" />
-		<result column="num" property="num" />
-		<result column="levels" property="levels" />
-		<result column="ismenu" property="ismenu" />
-		<result column="tips" property="tips" />
-		<result column="status" property="status" />
-		<result column="isopen" property="isopen" />
-	</resultMap>
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.stylefeng.guns.modular.system.model.Menu">
+        <id column="id" property="id"/>
+        <result column="code" property="code"/>
+        <result column="pcode" property="pcode"/>
+        <result column="pcodes" property="pcodes"/>
+        <result column="name" property="name"/>
+        <result column="icon" property="icon"/>
+        <result column="url" property="url"/>
+        <result column="num" property="num"/>
+        <result column="levels" property="levels"/>
+        <result column="ismenu" property="ismenu"/>
+        <result column="tips" property="tips"/>
+        <result column="status" property="status"/>
+        <result column="isopen" property="isopen"/>
+    </resultMap>
 
     <sql id="Base_Column_List">
-        id, code, pcode, name, icon, url, num, levels,pcodes,
-        tips, status,isopen,ismenu
+        id,
+        code,
+        pcode,
+        name,
+        icon,
+        url,
+        num,
+        levels,
+        pcodes,
+        tips,
+        status,
+        isopen,
+        ismenu
     </sql>
 
     <select id="selectMenus" resultType="map">
         select
-        <include refid="Base_Column_List" />
+        <include refid="Base_Column_List"/>
         from sys_menu
         where status = 1
         <if test="condition != null and condition != ''">
@@ -38,36 +49,34 @@
     </select>
 
     <select id="getMenuIdsByRoleId" resultType="long">
-        select menuid from
-        sys_relation where roleid = #{roleId}
+        select menuid
+        from sys_relation
+        where roleid = #{roleId}
     </select>
 
     <select id="menuTreeList" resultType="com.stylefeng.guns.core.node.ZTreeNode">
-        SELECT
-        m1.id AS id,
-        (
-        CASE
-        WHEN (m2.id = 0 OR m2.id IS NULL) THEN
-        0
-        ELSE
-        m2.id
-        END
-        ) AS pId,
-        m1. NAME
-        AS NAME,
-        (
-        CASE
-        WHEN (m2.id = 0 OR m2.id IS NULL) THEN
-        'true'
-        ELSE
-        'false'
-        END
-        ) as isOpen
-        FROM
-        sys_menu m1
-        LEFT join sys_menu m2 ON m1.pcode = m2. CODE
-        ORDER BY
-        m1.id ASC
+        SELECT m1.id AS id,
+               (
+                   CASE
+                       WHEN (m2.id = 0 OR m2.id IS NULL) THEN
+                           0
+                       ELSE
+                           m2.id
+                       END
+                   ) AS pId,
+               m1.NAME
+                     AS NAME,
+               (
+                   CASE
+                       WHEN (m2.id = 0 OR m2.id IS NULL) THEN
+                           'true'
+                       ELSE
+                           'false'
+                       END
+                   ) as isOpen
+        FROM sys_menu m1
+                 LEFT join sys_menu m2 ON m1.pcode = m2.CODE
+        ORDER BY m1.id ASC
     </select>
 
     <select id="menuTreeListByMenuIds" resultType="com.stylefeng.guns.core.node.ZTreeNode">
@@ -122,13 +131,15 @@
     </select>
 
     <delete id="deleteRelationByMenu">
-        delete from sys_relation where menuid = #{menuId}
+        delete
+        from sys_relation
+        where menuid = #{menuId}
     </delete>
 
     <select id="getResUrlsByRoleId" resultType="string">
-        select url from
-        sys_relation rel
-        inner join sys_menu m on rel.menuid = m.id
+        select url
+        from sys_relation rel
+                 inner join sys_menu m on rel.menuid = m.id
         where rel.roleid = #{roleId}
     </select>
 

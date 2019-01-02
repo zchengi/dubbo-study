@@ -3,7 +3,6 @@ package com.stylefeng.guns.core.mutidatasource.annotion;
 import java.lang.annotation.*;
 
 /**
- * 
  * 多数据源标识
  *
  * @author fengshuonan
@@ -11,8 +10,8 @@ import java.lang.annotation.*;
  */
 @Inherited
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ ElementType.METHOD })
+@Target({ElementType.METHOD})
 public @interface DataSource {
 
-	String name() default "";
+    String name() default "";
 }

@@ -21,13 +21,13 @@ Process.initColumn = function () {
         {title: '申请人', field: 'assignee', visible: true, align: 'center', valign: 'middle'},
         {
             title: '操作', visible: true, align: 'center', valign: 'middle', formatter: function (value, row, index) {
-            if (row.selfFlag == true) {
-                return '<button type="button" class="btn btn-primary button-margin" onclick="Process.pass(' + row.id + ')" id=""><i class="fa fa-edit"></i>&nbsp;通过</button>' +
-                    '<button type="button" class="btn btn-danger button-margin" onclick="Process.unPass(' + row.id + ')" id=""><i class="fa fa-arrows-alt"></i>&nbsp;不通过</button>';
-            } else {
-                return '<button type="button" class="btn btn-primary button-margin" onclick="Process.pass(' + row.id + ')" id=""><i class="fa fa-edit"></i>&nbsp;通过</button>';
+                if (row.selfFlag == true) {
+                    return '<button type="button" class="btn btn-primary button-margin" onclick="Process.pass(' + row.id + ')" id=""><i class="fa fa-edit"></i>&nbsp;通过</button>' +
+                        '<button type="button" class="btn btn-danger button-margin" onclick="Process.unPass(' + row.id + ')" id=""><i class="fa fa-arrows-alt"></i>&nbsp;不通过</button>';
+                } else {
+                    return '<button type="button" class="btn btn-primary button-margin" onclick="Process.pass(' + row.id + ')" id=""><i class="fa fa-edit"></i>&nbsp;通过</button>';
+                }
             }
-        }
         }
     ];
 };

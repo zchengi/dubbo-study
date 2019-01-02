@@ -14,7 +14,7 @@ var DictInfoDlg = {
  * item获取新的id
  */
 DictInfoDlg.newId = function () {
-    if(this.count == undefined){
+    if (this.count == undefined) {
         this.count = 0;
     }
     this.count = this.count + 1;
@@ -48,11 +48,11 @@ DictInfoDlg.deleteItem = function (event) {
 /**
  * 清除为空的item Dom
  */
-DictInfoDlg.clearNullDom = function(){
-    $("[name='dictItem']").each(function(){
+DictInfoDlg.clearNullDom = function () {
+    $("[name='dictItem']").each(function () {
         var num = $(this).find("[name='itemNum']").val();
         var name = $(this).find("[name='itemName']").val();
-        if(num == '' || name == ''){
+        if (num == '' || name == '') {
             $(this).remove();
         }
     });
@@ -64,11 +64,11 @@ DictInfoDlg.clearNullDom = function(){
 DictInfoDlg.collectData = function () {
     this.clearNullDom();
     var mutiString = "";
-    $("[name='dictItem']").each(function(){
+    $("[name='dictItem']").each(function () {
         var code = $(this).find("[name='itemCode']").val();
         var name = $(this).find("[name='itemName']").val();
         var num = $(this).find("[name='itemNum']").val();
-        mutiString = mutiString + (code + ":" + name + ":"+ num+";");
+        mutiString = mutiString + (code + ":" + name + ":" + num + ";");
     });
     this.dictName = $("#dictName").val();
     this.dictCode = $("#dictCode").val();
@@ -90,10 +90,10 @@ DictInfoDlg.addSubmit = function () {
     }, function (data) {
         Feng.error("添加失败!" + data.responseJSON.message + "!");
     });
-    ajax.set('dictName',this.dictName);
-    ajax.set('dictCode',this.dictCode);
-    ajax.set('dictTips',this.dictTips);
-    ajax.set('dictValues',this.mutiString);
+    ajax.set('dictName', this.dictName);
+    ajax.set('dictCode', this.dictCode);
+    ajax.set('dictTips', this.dictTips);
+    ajax.set('dictValues', this.mutiString);
     ajax.start();
 };
 
@@ -109,10 +109,10 @@ DictInfoDlg.editSubmit = function () {
     }, function (data) {
         Feng.error("修改失败!" + data.responseJSON.message + "!");
     });
-    ajax.set('dictId',$("#dictId").val());
-    ajax.set('dictName',this.dictName);
-    ajax.set('dictCode',this.dictCode);
-    ajax.set('dictTips',this.dictTips);
-    ajax.set('dictValues',this.mutiString);
+    ajax.set('dictId', $("#dictId").val());
+    ajax.set('dictName', this.dictName);
+    ajax.set('dictCode', this.dictCode);
+    ajax.set('dictTips', this.dictTips);
+    ajax.set('dictValues', this.mutiString);
     ajax.start();
 };

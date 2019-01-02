@@ -53,6 +53,56 @@ public class QrImage {
      */
     private String fileOutputPath;
 
+    public QrImage(String qrContent, int qrWidth, int qrHeight, String qrIconFilePath, int qrIconWidth,
+                   int topWrodHeight, int wordSize, String wordContent, String fileOutputPath) {
+        super();
+        this.qrContent = qrContent;
+        this.qrWidth = qrWidth;
+        this.qrHeight = qrHeight;
+        this.qrIconFilePath = qrIconFilePath;
+        this.qrIconWidth = qrIconWidth;
+        this.topWrodHeight = topWrodHeight;
+        this.wordSize = wordSize;
+        this.wordContent = wordContent;
+        this.fileOutputPath = fileOutputPath;
+    }
+
+    public String getQrContent() {
+        return qrContent;
+    }
+
+    public int getQrWidth() {
+        return qrWidth;
+    }
+
+    public int getQrHeight() {
+        return qrHeight;
+    }
+
+    public String getQrIconFilePath() {
+        return qrIconFilePath;
+    }
+
+    public int getTopWrodHeight() {
+        return topWrodHeight;
+    }
+
+    public int getWordSize() {
+        return wordSize;
+    }
+
+    public String getWordContent() {
+        return wordContent;
+    }
+
+    public String getFileOutputPath() {
+        return fileOutputPath;
+    }
+
+    public int getQrIconWidth() {
+        return qrIconWidth;
+    }
+
     public static class Builder {
         private String qrContent;
         private int qrWidth;
@@ -116,55 +166,5 @@ public class QrImage {
             return new QrImage(this.qrContent, this.qrWidth, this.qrHeight, this.qrIconFilePath, this.qrIconWidth,
                     this.topWrodHeight, this.wordSize, this.wordContent, this.fileOutputPath);
         }
-    }
-
-    public QrImage(String qrContent, int qrWidth, int qrHeight, String qrIconFilePath, int qrIconWidth,
-                   int topWrodHeight, int wordSize, String wordContent, String fileOutputPath) {
-        super();
-        this.qrContent = qrContent;
-        this.qrWidth = qrWidth;
-        this.qrHeight = qrHeight;
-        this.qrIconFilePath = qrIconFilePath;
-        this.qrIconWidth = qrIconWidth;
-        this.topWrodHeight = topWrodHeight;
-        this.wordSize = wordSize;
-        this.wordContent = wordContent;
-        this.fileOutputPath = fileOutputPath;
-    }
-
-    public String getQrContent() {
-        return qrContent;
-    }
-
-    public int getQrWidth() {
-        return qrWidth;
-    }
-
-    public int getQrHeight() {
-        return qrHeight;
-    }
-
-    public String getQrIconFilePath() {
-        return qrIconFilePath;
-    }
-
-    public int getTopWrodHeight() {
-        return topWrodHeight;
-    }
-
-    public int getWordSize() {
-        return wordSize;
-    }
-
-    public String getWordContent() {
-        return wordContent;
-    }
-
-    public String getFileOutputPath() {
-        return fileOutputPath;
-    }
-
-    public int getQrIconWidth() {
-        return qrIconWidth;
     }
 }

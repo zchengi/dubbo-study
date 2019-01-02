@@ -25,10 +25,9 @@ import java.lang.reflect.Method;
 @Aspect
 public class MultiSourceExAop implements Ordered {
 
-    private Logger log = LoggerFactory.getLogger(this.getClass());
-
     @Autowired
     MutiDataSourceProperties mutiDataSourceProperties;
+    private Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Pointcut(value = "@annotation(com.stylefeng.guns.core.mutidatasource.annotion.DataSource)")
     private void cut() {

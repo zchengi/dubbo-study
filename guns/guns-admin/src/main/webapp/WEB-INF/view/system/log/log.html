@@ -20,27 +20,28 @@
                             </div>
                             <div class="col-sm-2">
                                 <#SelectCon id="logType" name="日志类型" >
-                                    <option value="0">全部</option>
-                                    <option value="1">业务日志</option>
-                                    <option value="2">异常日志</option>
-                                </#SelectCon>
-                            </div>
-                            <div class="col-sm-2">
-                                <#button name="搜索" icon="fa-search" clickFun="OptLog.search()"/>
-                            </div>
+                                <option value="0">全部</option>
+                                <option value="1">业务日志</option>
+                                <option value="2">异常日志</option>
+                            </
+                            #SelectCon>
                         </div>
-                        <div class="hidden-xs" id="OptLogTableToolbar" role="group">
-                            <#button name="查看详情" icon="fa-plus" clickFun="OptLog.detail()"/>
-                            @if(shiro.hasPermission("/log/delLog")){
-                                <#button name="清空日志" icon="fa-plus" clickFun="OptLog.delLog()" space="true"/>
-                            @}
+                        <div class="col-sm-2">
+                            <#button name="搜索" icon="fa-search" clickFun="OptLog.search()"/>
                         </div>
-                        <#table id="OptLogTable"/>
                     </div>
+                    <div class="hidden-xs" id="OptLogTableToolbar" role="group">
+                        <#button name="查看详情" icon="fa-plus" clickFun="OptLog.detail()"/>
+                        @if(shiro.hasPermission("/log/delLog")){
+                        <#button name="清空日志" icon="fa-plus" clickFun="OptLog.delLog()" space="true"/>
+                        @}
+                    </div>
+                    <#table id="OptLogTable"/>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 <script src="${ctxPath}/static/modular/system/log/log.js"></script>
 @}

@@ -21,6 +21,19 @@ public enum ExpenseState {
         this.message = message;
     }
 
+    public static String valueOf(Integer status) {
+        if (status == null) {
+            return "";
+        } else {
+            for (ExpenseState s : ExpenseState.values()) {
+                if (s.getCode() == status) {
+                    return s.getMessage();
+                }
+            }
+            return "";
+        }
+    }
+
     public int getCode() {
         return code;
     }
@@ -35,18 +48,5 @@ public enum ExpenseState {
 
     public void setMessage(String message) {
         this.message = message;
-    }
-
-    public static String valueOf(Integer status) {
-        if (status == null) {
-            return "";
-        } else {
-            for (ExpenseState s : ExpenseState.values()) {
-                if (s.getCode() == status) {
-                    return s.getMessage();
-                }
-            }
-            return "";
-        }
     }
 }

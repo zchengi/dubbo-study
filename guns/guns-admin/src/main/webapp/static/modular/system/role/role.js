@@ -75,7 +75,7 @@ Role.openChangeRole = function () {
 Role.delRole = function () {
     if (this.check()) {
 
-        var operation = function(){
+        var operation = function () {
             var ajax = new $ax(Feng.ctxPath + "/role/remove", function () {
                 Feng.success("删除成功!");
                 Role.table.refresh();
@@ -86,7 +86,7 @@ Role.delRole = function () {
             ajax.start();
         };
 
-        Feng.confirm("是否删除角色 " + Role.seItem.name + "?",operation);
+        Feng.confirm("是否删除角色 " + Role.seItem.name + "?", operation);
     }
 };
 

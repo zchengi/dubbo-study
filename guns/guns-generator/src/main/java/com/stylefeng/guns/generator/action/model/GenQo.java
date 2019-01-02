@@ -62,7 +62,7 @@ public class GenQo {
      * 模块名
      */
     private String moduleName;
-    
+
     /**
      * 父级菜单名称
      */

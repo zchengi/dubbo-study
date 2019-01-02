@@ -35,9 +35,9 @@ public class LogWarpper extends BaseControllerWarpper {
         //如果信息中包含分割符号;;;   则分割字符串返给前台
         if (ToolUtil.isNotEmpty(message) && message.indexOf(Contrast.separator) != -1) {
             String[] msgs = message.split(Contrast.separator);
-            map.put("regularMessage",msgs);
-        }else{
-            map.put("regularMessage",message);
+            map.put("regularMessage", msgs);
+        } else {
+            map.put("regularMessage", message);
         }
     }
 

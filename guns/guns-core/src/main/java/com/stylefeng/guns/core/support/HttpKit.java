@@ -34,8 +34,8 @@ import java.util.Map;
 
 public class HttpKit {
 
-    public static String getIp(){
-       return HttpKit.getRequest().getRemoteHost();
+    public static String getIp() {
+        return HttpKit.getRequest().getRemoteHost();
     }
 
     /**
@@ -45,7 +45,7 @@ public class HttpKit {
         HashMap<String, String> values = new HashMap<>();
         HttpServletRequest request = HttpKit.getRequest();
         Enumeration enums = request.getParameterNames();
-        while ( enums.hasMoreElements()){
+        while (enums.hasMoreElements()) {
             String paramName = (String) enums.nextElement();
             String paramValue = request.getParameter(paramName);
             values.put(paramName, paramValue);
@@ -63,6 +63,7 @@ public class HttpKit {
 
     /**
      * 获取 包装防Xss Sql注入的 HttpServletRequest
+     *
      * @return request
      */
     public static HttpServletRequest getRequest() {
@@ -73,7 +74,7 @@ public class HttpKit {
     /**
      * 向指定URL发送GET方法的请求
      *
-     * @param url 发送请求的URL
+     * @param url   发送请求的URL
      * @param param 请求参数
      * @return URL 所代表远程资源的响应结果
      */
@@ -133,8 +134,8 @@ public class HttpKit {
     /**
      * 向指定 URL 发送POST方法的请求
      *
-     * @param url 发送请求的 URL
-     * @param param  请求参数
+     * @param url   发送请求的 URL
+     * @param param 请求参数
      * @return 所代表远程资源的响应结果
      */
     public static String sendPost(String url, Map<String, String> param) {

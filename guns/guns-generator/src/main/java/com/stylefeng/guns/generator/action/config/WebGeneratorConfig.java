@@ -65,11 +65,11 @@ public class WebGeneratorConfig extends AbstractGeneratorConfig {
         contextConfig.setBizChName(genQo.getBizName());
         contextConfig.setModuleName(genQo.getModuleName());
         contextConfig.setProjectPath(genQo.getProjectPath());//写自己项目的绝对路径
-        if(ToolUtil.isEmpty(genQo.getIgnoreTabelPrefix())){
+        if (ToolUtil.isEmpty(genQo.getIgnoreTabelPrefix())) {
             String entityName = StrKit.toCamelCase(genQo.getTableName());
             contextConfig.setEntityName(StrKit.firstCharToUpperCase(entityName));
             contextConfig.setBizEnName(StrKit.firstCharToLowerCase(entityName));
-        }else{
+        } else {
             String entiyName = StrKit.toCamelCase(StrKit.removePrefix(genQo.getTableName(), genQo.getIgnoreTabelPrefix()));
             contextConfig.setEntityName(StrKit.firstCharToUpperCase(entiyName));
             contextConfig.setBizEnName(StrKit.firstCharToLowerCase(entiyName));

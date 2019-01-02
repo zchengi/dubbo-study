@@ -24,17 +24,16 @@ import org.springframework.web.context.WebApplicationContext;
 //@Transactional //打开的话测试之后数据可自动回滚
 public class BaseJunit {
 
+    protected MockMvc mockMvc;
     @Autowired
     WebApplicationContext webApplicationContext;
 
-    protected MockMvc mockMvc;
-
     @Before
-    public void setupMockMvc(){
+    public void setupMockMvc() {
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
     }
 
     @Before
-    public void initDatabase(){
+    public void initDatabase() {
     }
 }
