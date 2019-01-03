@@ -6,5 +6,30 @@ package com.stylefeng.guns.api;
  */
 public interface UserAPI {
 
-    Boolean login(String username, String password);
+    /**
+     * 用户登录
+     *
+     * @return userId
+     */
+    int login(String username, String password);
+
+    /**
+     * 用户注册
+     */
+    boolean register(UserModel userModel);
+
+    /**
+     * 用户是否存在
+     */
+    boolean checkUsername(String username);
+
+    /**
+     * 用户信息查询
+     */
+    UserInfoModel getUserInfo(int uuid);
+
+    /**
+     * 修改用户信息
+     */
+    UserInfoModel updateUserInfo(UserInfoModel userInfoModel);
 }
