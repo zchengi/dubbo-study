@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 public class UserInfoModel {
 
-    private String uuid;
+    private Integer uuid;
     private String username;
     private String nickname;
     private String email;
@@ -22,7 +22,7 @@ public class UserInfoModel {
     private String biography;
     private String address;
     private String headAddress;
-    private Long createTime;
+    private Long beginTime;
     private Long updateTime;
 
 }

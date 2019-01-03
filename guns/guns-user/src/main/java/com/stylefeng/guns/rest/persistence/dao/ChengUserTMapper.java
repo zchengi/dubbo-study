@@ -2,6 +2,7 @@ package com.stylefeng.guns.rest.persistence.dao;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.stylefeng.guns.rest.persistence.model.ChengUserT;
+import org.springframework.stereotype.Repository;
 
 /**
  * <p>
@@ -11,6 +12,7 @@ import com.stylefeng.guns.rest.persistence.model.ChengUserT;
  * @author cheng
  * @since 2019-01-04
  */
+@Repository
 public interface ChengUserTMapper extends BaseMapper<ChengUserT> {
 
 }

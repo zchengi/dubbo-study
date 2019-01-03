@@ -7,16 +7,16 @@ package com.stylefeng.guns.api;
 public interface UserAPI {
 
     /**
+     * 用户注册
+     */
+    boolean register(UserModel userModel);
+
+    /**
      * 用户登录
      *
      * @return userId
      */
     int login(String username, String password);
-
-    /**
-     * 用户注册
-     */
-    boolean register(UserModel userModel);
 
     /**
      * 用户是否存在
