@@ -12,6 +12,8 @@ public class QuickStartService implements ServiceAPI {
 
     @Override
     public String sendMessage(String message) {
+
+        System.out.println("message: " + message);
         return "quick-start-provider-message: " + message;
     }
 }

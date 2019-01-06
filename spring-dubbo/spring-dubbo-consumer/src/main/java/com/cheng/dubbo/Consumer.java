@@ -22,7 +22,9 @@ public class Consumer {
             // 获取接口
             ServiceAPI serviceApi = (ServiceAPI) context.getBean("consumerService");
 
-            System.out.println(serviceApi.sendMessage(message));
+            for (int i = 0; i < 10; i++) {
+                System.out.println(serviceApi.sendMessage(message+"-" + i));
+            }
         }
     }
 }
