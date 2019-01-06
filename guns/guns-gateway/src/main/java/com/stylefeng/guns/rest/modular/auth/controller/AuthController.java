@@ -30,8 +30,7 @@ public class AuthController {
 
         boolean validate = false;
         // 使用自定义用户名密码校验机制
-//        int userId = userAPI.login(authRequest.getUserName(), authRequest.getPassword());
-        int userId = 3;
+        int userId = userAPI.login(authRequest.getUserName(), authRequest.getPassword());
         if (userId != 0) {
             validate = true;
         }
