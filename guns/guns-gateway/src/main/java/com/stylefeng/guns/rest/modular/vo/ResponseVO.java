@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
+ * Controller 返回 VO
+ *
  * @author cheng
  *         2019/1/3 23:46
  */
@@ -26,7 +28,7 @@ public class ResponseVO<T> {
     private ResponseVO() {
     }
 
-    public static <T> ResponseVO<T> success(T t) {
+    public static <T> ResponseVO success(T t) {
 
         ResponseVO<T> responseVO = new ResponseVO<>();
         responseVO.setStatus(0);
@@ -34,17 +36,17 @@ public class ResponseVO<T> {
         return responseVO;
     }
 
-    public static <T> ResponseVO<T> serviceFail(String message) {
+    public static ResponseVO serviceFail(String message) {
 
-        ResponseVO<T> responseVO = new ResponseVO<>();
+        ResponseVO responseVO = new ResponseVO<>();
         responseVO.setStatus(1);
         responseVO.setMsg(message);
         return responseVO;
     }
 
-    public static <T> ResponseVO<T> appFail(String message) {
+    public static ResponseVO appFail(String message) {
 
-        ResponseVO<T> responseVO = new ResponseVO<>();
+        ResponseVO responseVO = new ResponseVO<>();
         responseVO.setStatus(999);
         responseVO.setMsg(message);
         return responseVO;
