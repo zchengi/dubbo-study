@@ -2,11 +2,18 @@ package com.stylefeng.guns.rest.modular.film;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.stylefeng.guns.film.FilmServiceApi;
-import com.stylefeng.guns.rest.modular.film.vo.FilmIndexVo;
+import com.stylefeng.guns.film.vo.CatVO;
+import com.stylefeng.guns.film.vo.SourceVO;
+import com.stylefeng.guns.film.vo.YearVO;
+import com.stylefeng.guns.rest.modular.film.vo.FilmConditionVO;
+import com.stylefeng.guns.rest.modular.film.vo.FilmIndexVO;
 import com.stylefeng.guns.rest.modular.vo.ResponseVO;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * @author cheng
@@ -34,21 +41,118 @@ public class FilmController {
     @GetMapping("/getIndex")
     public ResponseVO getIndex() {
 
-        FilmIndexVo filmIndexVo = new FilmIndexVo();
+        FilmIndexVO filmIndexVO = new FilmIndexVO();
 
         // 获取 banner 信息
-        filmIndexVo.setBanners(filmServiceApi.getBanners());
+        filmIndexVO.setBanners(filmServiceApi.getBanners());
         // 获取 正在热映 电影
-        filmIndexVo.setHotFilms(filmServiceApi.getHotFilms(true, 8));
+        filmIndexVO.setHotFilms(filmServiceApi.getHotFilms(true, 8));
         // 获取 即将上映 电影
-        filmIndexVo.setSoonFilms(filmServiceApi.getSoonFilms(true, 8));
+        filmIndexVO.setSoonFilms(filmServiceApi.getSoonFilms(true, 8));
         // 获取 票房排行榜
-        filmIndexVo.setBoxRanking(filmServiceApi.getBoxRanking());
+        filmIndexVO.setBoxRanking(filmServiceApi.getBoxRanking());
         // 获取 受欢迎 榜单
-        filmIndexVo.setExpectRanking(filmServiceApi.getExpectRanking());
+        filmIndexVO.setExpectRanking(filmServiceApi.getExpectRanking());
         // 获取 前一百 电影
-        filmIndexVo.setTop100(filmServiceApi.getTop100());
+        filmIndexVO.setTop100(filmServiceApi.getTop100());
 
-        return ResponseVO.success(IMG_PRE, filmIndexVo);
+        return ResponseVO.success(IMG_PRE, filmIndexVO);
+    }
+
+    /**
+     * 条件查询列表
+     */
+    @GetMapping("/getConditionList")
+    public ResponseVO getConditionList(@RequestParam(name = "catId", required = false, defaultValue = "99") String catId,
+                                       @RequestParam(name = "sourceId", required = false, defaultValue = "99") String sourceId,
+                                       @RequestParam(name = "yearId", required = false, defaultValue = "99") String yearId) {
+
+        FilmConditionVO filmConditionVO = new FilmConditionVO();
+
+        // 类型集合
+
+        // 判断集合中是否有与传入 id 对应的值
+        boolean flag = false;
+        List<CatVO> catVoList = filmServiceApi.getCatList();
+        CatVO catVOId99 = null;
+        for (CatVO catVO : catVoList) {
+
+            // 判断集合是否存在 id，如果存在，则将对应的实体变成 active 状态
+            // 如果传入的 id 在集合中不存在就会出现 bug，设置 flag 解决
+            // 如:集合: 1,2,3,99,4,5 ; 传入: 6
+
+            // 不判断 【全部】
+            if ("99".equals(catVO.getCatId())) {
+                catVOId99 = catVO;
+                catVOId99.setIsActive(false);
+                continue;
+            }
+
+            if (catId.equals(catVO.getCatId())) {
+                flag = true;
+                catVO.setIsActive(true);
+            } else {
+                catVO.setIsActive(false);
+            }
+        }
+
+        // 如果没有 id ，则默认将【全部】变为 Active 状态
+        if (catVOId99 != null && !flag) {
+            catVOId99.setIsActive(true);
+        }
+
+        // 片源集合
+        flag = false;
+        List<SourceVO> sourceVOList = filmServiceApi.getSourceList();
+        SourceVO sourceVOId99 = null;
+        for (SourceVO sourceVO : sourceVOList) {
+
+            if ("99".equals(sourceVO.getSourceId())) {
+                sourceVOId99 = sourceVO;
+                sourceVOId99.setIsActive(false);
+                continue;
+            }
+
+            if (sourceId.equals(sourceVO.getSourceId())) {
+                flag = true;
+                sourceVO.setIsActive(true);
+            } else {
+                sourceVO.setIsActive(false);
+            }
+        }
+
+        if (sourceVOId99 != null && !flag) {
+            sourceVOId99.setIsActive(true);
+        }
+
+        // 年代集合
+        flag = false;
+        List<YearVO> yearVOList = filmServiceApi.getYearList();
+        YearVO yearVOId99 = null;
+        for (YearVO yearVO : yearVOList) {
+
+            if ("99".equals(yearVO.getYearId())) {
+                yearVOId99 = yearVO;
+                yearVOId99.setIsActive(false);
+                continue;
+            }
+
+            if (yearId.equals(yearVO.getYearId())) {
+                flag = true;
+                yearVO.setIsActive(true);
+            } else {
+                yearVO.setIsActive(false);
+            }
+        }
+
+        if (yearVOId99 != null && !flag) {
+            yearVOId99.setIsActive(true);
+        }
+
+        filmConditionVO.setCatInfo(catVoList);
+        filmConditionVO.setSourceInfo(sourceVOList);
+        filmConditionVO.setYearInfo(yearVOList);
+
+        return ResponseVO.success(filmConditionVO);
     }
 }

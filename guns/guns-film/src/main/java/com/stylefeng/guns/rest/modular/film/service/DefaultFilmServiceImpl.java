@@ -5,13 +5,9 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.stylefeng.guns.core.util.DateUtil;
 import com.stylefeng.guns.film.FilmServiceApi;
-import com.stylefeng.guns.film.vo.BannerVO;
-import com.stylefeng.guns.film.vo.FilmInfo;
-import com.stylefeng.guns.film.vo.FilmVO;
-import com.stylefeng.guns.rest.common.persistence.dao.ChengBannerTMapper;
-import com.stylefeng.guns.rest.common.persistence.dao.ChengFilmTMapper;
-import com.stylefeng.guns.rest.common.persistence.model.ChengBannerT;
-import com.stylefeng.guns.rest.common.persistence.model.ChengFilmT;
+import com.stylefeng.guns.film.vo.*;
+import com.stylefeng.guns.rest.common.persistence.dao.*;
+import com.stylefeng.guns.rest.common.persistence.model.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -32,6 +28,15 @@ public class DefaultFilmServiceImpl implements FilmServiceApi {
 
     @Autowired
     private ChengFilmTMapper chengFilmTMapper;
+
+    @Autowired
+    private ChengCatDictTMapper chengCatDictTMapper;
+
+    @Autowired
+    private ChengSourceDictTMapper chengSourceDictTMapper;
+
+    @Autowired
+    private ChengYearDictTMapper chengYearDictTMapper;
 
     @Override
     public List<BannerVO> getBanners() {
@@ -68,8 +73,8 @@ public class DefaultFilmServiceImpl implements FilmServiceApi {
             List<ChengFilmT> chengFilmTList = chengFilmTMapper.selectPage(page, entityWrapper);
 
             filmVO.setFilmNum(chengFilmTList.size());
-            // 组织 filmInfoList
-            filmVO.setFilmInfoList(getFilmInfoList(chengFilmTList));
+            // 组织 filmInfo
+            filmVO.setFilmInfo(getFilmInfoList(chengFilmTList));
         } else {
             // 否: 为列表页
 
@@ -95,8 +100,8 @@ public class DefaultFilmServiceImpl implements FilmServiceApi {
             List<ChengFilmT> chengFilmTList = chengFilmTMapper.selectPage(page, entityWrapper);
 
             filmVO.setFilmNum(chengFilmTList.size());
-            // 组织 filmInfoList
-            filmVO.setFilmInfoList(getFilmInfoList(chengFilmTList));
+            // 组织 filmInfo
+            filmVO.setFilmInfo(getFilmInfoList(chengFilmTList));
         } else {
             // 否: 为列表页
 
@@ -147,6 +152,63 @@ public class DefaultFilmServiceImpl implements FilmServiceApi {
         return getFilmInfoList(chengFilmTList);
     }
 
+    @Override
+    public List<CatVO> getCatList() {
+
+        List<CatVO> catVOList = new ArrayList<>();
+        List<ChengCatDictT> chengCatDictTList = chengCatDictTMapper.selectList(null);
+
+        // 实体对象 ChengCatDictT -> 业务对象 CatVO
+        chengCatDictTList.forEach(chengCatDictT -> {
+            CatVO catVO = new CatVO();
+
+            catVO.setCatId(String.valueOf(chengCatDictT.getUuid()));
+            catVO.setCatName(chengCatDictT.getShowName());
+
+            catVOList.add(catVO);
+        });
+
+        return catVOList;
+    }
+
+    @Override
+    public List<SourceVO> getSourceList() {
+
+        List<SourceVO> sourceVOList = new ArrayList<>();
+        List<ChengSourceDictT> chengSourceDictTList = chengSourceDictTMapper.selectList(null);
+
+        // 实体对象 ChengSourceDictT -> 业务对象 SourceVO
+        chengSourceDictTList.forEach(chengCatDictT -> {
+            SourceVO sourceVO = new SourceVO();
+
+            sourceVO.setSourceId(String.valueOf(chengCatDictT.getUuid()));
+            sourceVO.setSourceName(chengCatDictT.getShowName());
+
+            sourceVOList.add(sourceVO);
+        });
+
+        return sourceVOList;
+    }
+
+    @Override
+    public List<YearVO> getYearList() {
+
+        List<YearVO> yearVOList = new ArrayList<>();
+        List<ChengYearDictT> sourceDictTList = chengYearDictTMapper.selectList(null);
+
+        // 实体对象 ChengYearDictT -> 业务对象 YearVO
+        sourceDictTList.forEach(chengCatDictT -> {
+            YearVO yearVO = new YearVO();
+
+            yearVO.setYearId(String.valueOf(chengCatDictT.getUuid()));
+            yearVO.setYearName(chengCatDictT.getShowName());
+
+            yearVOList.add(yearVO);
+        });
+
+        return yearVOList;
+    }
+
     /**
      * ChengFilmT -> FilmInfo
      */
@@ -162,7 +224,7 @@ public class DefaultFilmServiceImpl implements FilmServiceApi {
             filmInfo.setFilmType(chengFilmT.getFilmType());
             filmInfo.setFilmScore(chengFilmT.getFilmScore());
             filmInfo.setFilmName(chengFilmT.getFilmName());
-            filmInfo.setFilmId(chengFilmT.getUuid()+"");
+            filmInfo.setFilmId(chengFilmT.getUuid() + "");
             filmInfo.setExpectNum(chengFilmT.getFilmPresalenum());
             filmInfo.setBoxNum(chengFilmT.getFilmBoxOffice());
             filmInfo.setShowTime(DateUtil.getDay(chengFilmT.getFilmTime()));

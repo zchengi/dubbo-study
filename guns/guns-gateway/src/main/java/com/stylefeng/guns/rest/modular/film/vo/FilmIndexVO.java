@@ -12,7 +12,7 @@ import java.util.List;
  *         2019/1/11 19:56
  */
 @Data
-public class FilmIndexVo {
+public class FilmIndexVO {
 
     private List<BannerVO> banners;
 

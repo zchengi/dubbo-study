@@ -1,8 +1,6 @@
 package com.stylefeng.guns.film;
 
-import com.stylefeng.guns.film.vo.BannerVO;
-import com.stylefeng.guns.film.vo.FilmInfo;
-import com.stylefeng.guns.film.vo.FilmVO;
+import com.stylefeng.guns.film.vo.*;
 
 import java.util.List;
 
@@ -27,11 +25,11 @@ public interface FilmServiceApi {
      */
     FilmVO getSoonFilms(boolean isLimit, int nums);
 
-
     /**
      * 获取 票房排行榜
      */
     List<FilmInfo> getBoxRanking();
+
     /**
      * 获取 人气排行榜
      */
@@ -41,4 +39,23 @@ public interface FilmServiceApi {
      * 获取 Top100
      */
     List<FilmInfo> getTop100();
+
+    // ---------- 获取影片条件接口 ----------
+
+    /**
+     * 分类条件
+     */
+    List<CatVO> getCatList();
+
+    /**
+     * 片源条件
+     */
+    List<SourceVO> getSourceList();
+
+    /**
+     * 年代条件
+     */
+    List<YearVO> getYearList();
+
+
 }
