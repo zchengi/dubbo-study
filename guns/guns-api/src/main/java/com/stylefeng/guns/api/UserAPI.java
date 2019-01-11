@@ -1,5 +1,8 @@
 package com.stylefeng.guns.api;
 
+import com.stylefeng.guns.api.vo.UserInfoModel;
+import com.stylefeng.guns.api.vo.UserModel;
+
 /**
  * @author cheng
  *         2019/1/2 20:35

@@ -1,7 +1,6 @@
 package com.stylefeng.guns.rest.modular.vo;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 /**
  * Controller 返回 VO
@@ -9,8 +8,7 @@ import lombok.Setter;
  * @author cheng
  *         2019/1/3 23:46
  */
-@Getter
-@Setter
+@Data
 public class ResponseVO<T> {
 
     /**
@@ -25,37 +23,61 @@ public class ResponseVO<T> {
 
     private T data;
 
+    /**
+     * 图片路径前缀
+     */
+    private String imgPre;
+
     private ResponseVO() {
     }
 
     public static <T> ResponseVO success(T t) {
 
         ResponseVO<T> responseVO = new ResponseVO<>();
+
         responseVO.setStatus(0);
         responseVO.setData(t);
+
+        return responseVO;
+    }
+
+    public static <T> ResponseVO success(String imgPre, T t) {
+
+        ResponseVO<T> responseVO = new ResponseVO<>();
+
+        responseVO.setStatus(0);
+        responseVO.setData(t);
+        responseVO.setImgPre(imgPre);
+
         return responseVO;
     }
 
     public static ResponseVO success(String message) {
 
         ResponseVO responseVO = new ResponseVO<>();
+
         responseVO.setMsg(message);
+
         return responseVO;
     }
 
     public static ResponseVO serviceFail(String message) {
 
         ResponseVO responseVO = new ResponseVO<>();
+
         responseVO.setStatus(1);
         responseVO.setMsg(message);
+
         return responseVO;
     }
 
     public static ResponseVO appFail(String message) {
 
         ResponseVO responseVO = new ResponseVO<>();
+
         responseVO.setStatus(999);
         responseVO.setMsg(message);
+
         return responseVO;
     }
 }

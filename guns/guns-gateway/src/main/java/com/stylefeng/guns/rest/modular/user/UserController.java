@@ -2,8 +2,8 @@ package com.stylefeng.guns.rest.modular.user;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.stylefeng.guns.api.UserAPI;
-import com.stylefeng.guns.api.UserInfoModel;
-import com.stylefeng.guns.api.UserModel;
+import com.stylefeng.guns.api.vo.UserInfoModel;
+import com.stylefeng.guns.api.vo.UserModel;
 import com.stylefeng.guns.rest.common.CurrentUser;
 import com.stylefeng.guns.rest.modular.vo.ResponseVO;
 import org.apache.commons.lang3.StringUtils;
@@ -22,7 +22,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/user")
 public class UserController {
 
-    @Reference(interfaceClass = UserAPI.class)
+    // todo 暂时设置为 false，项目启动的时候不检测是否有 Dubbo 提供者
+    @Reference(interfaceClass = UserAPI.class,check = false)
     private UserAPI userAPI;
 
     @PostMapping("/register")
