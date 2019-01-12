@@ -6,5 +6,7 @@ package com.cheng.dubbo;
  */
 public interface ServiceAPI {
 
-    String sendMessage(String message);
+    String sendMessage(String message) throws InterruptedException;
+
+    String sendMessage2(String message) throws InterruptedException;
 }

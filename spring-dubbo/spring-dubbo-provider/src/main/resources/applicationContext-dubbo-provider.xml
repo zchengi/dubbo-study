@@ -17,7 +17,10 @@
     <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
 
     <!-- 声明需要暴露的服务接口 -->
-    <dubbo:service interface="com.cheng.dubbo.ServiceAPI" ref="serviceApi"/>
+    <dubbo:service interface="com.cheng.dubbo.ServiceAPI"
+                   timeout="10000"
+                   async="true"
+                   ref="serviceApi"/>
     <!-- registry="N/A"  -->
 
     <!-- 和本地 bean 一样实现服务 -->
