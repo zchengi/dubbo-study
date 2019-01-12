@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.stylefeng.guns.api.film.vo.FilmDetailVO;
 import com.stylefeng.guns.rest.common.persistence.model.ChengFilmT;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 /**
  * <p>
@@ -13,6 +14,7 @@ import org.apache.ibatis.annotations.Param;
  * @author cheng
  * @since 2019-01-11
  */
+@Repository
 public interface ChengFilmTMapper extends BaseMapper<ChengFilmT> {
 
     FilmDetailVO getFilmDetailByName(@Param("filmName") String filmName);

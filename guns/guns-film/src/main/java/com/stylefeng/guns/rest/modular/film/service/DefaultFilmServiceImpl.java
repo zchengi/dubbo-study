@@ -370,7 +370,7 @@ public class DefaultFilmServiceImpl implements FilmServiceApi {
         // searchType 1:名称, 2:Id
         FilmDetailVO filmDetailVO;
         if (searchType == 1) {
-            filmDetailVO = chengFilmTMapper.getFilmDetailByName(searchParam);
+            filmDetailVO = chengFilmTMapper.getFilmDetailByName("%" + searchParam + "%");
         } else {
             filmDetailVO = chengFilmTMapper.getFilmDetailById(searchParam);
         }
