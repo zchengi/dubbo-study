@@ -1,6 +1,6 @@
-package com.stylefeng.guns.film;
+package com.stylefeng.guns.api.film;
 
-import com.stylefeng.guns.film.vo.*;
+import com.stylefeng.guns.api.film.vo.*;
 
 import java.util.List;
 
@@ -24,7 +24,6 @@ public interface FilmServiceApi {
      * 推荐做法：扩展接口
      */
 //    FilmVO getHotFilms(boolean isLimit, int nums...);
-
 
     /**
      * 获取 即将上映影片（按照受欢迎程度降序排列）
@@ -67,4 +66,31 @@ public interface FilmServiceApi {
      * 年代条件
      */
     List<YearVO> getYearList();
+
+    // ---------- 影片详情查询接口 ----------
+
+    /**
+     * 影片Id 或者 影片名称 获取影片信息
+     */
+    FilmDetailVO getFilmDetail(int searchType, String searchParam);
+
+    /**
+     * 影片 描述信息
+     */
+    FilmDescVO getFilmDesc(String filmId);
+
+    /**
+     * 影片 图片信息
+     */
+    ImgVO getImages(String filmId);
+
+    /**
+     * 影片 导演信息
+     */
+    ActorVO getDirectorInfo(String filmId);
+
+    /**
+     * 影片 演员信息
+     */
+    List<ActorVO> getActors(String filmId);
 }

@@ -300,3 +300,28 @@ INSERT INTO cheng_actor_t(uuid, actor_name, actor_img) value (7, '强森', 'actors
 INSERT INTO cheng_actor_t(uuid, actor_name, actor_img) value (8, '杰森·斯坦森', 'actors/7ec0c90aec03c7904c1db3af1153162f77864.jpg');
 INSERT INTO cheng_actor_t(uuid, actor_name, actor_img) value (9, '李冰冰', 'actors/d2258cd0529950cf5099206519d91d0e51803.jpg');
 INSERT INTO cheng_actor_t(uuid, actor_name, actor_img) value (10, '汤姆·克鲁斯', 'actors/6afaea1cb4ca2b346e86e265347c78b833970.jpg');
+
+
+-- ----------------------------
+-- Table structure for cheng_film_actor_t
+-- ----------------------------
+DROP TABLE IF EXISTS `cheng_film_actor_t`;
+CREATE TABLE cheng_film_actor_t(
+                                UUID INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键编号',
+                                film_id INT COMMENT '影片编号,对应cheng_film_t',
+                                actor_id INT COMMENT '演员编号,对应cheng_actor_t',
+                                role_name VARCHAR(100) COMMENT '角色名称'
+) COMMENT '影片与演员映射表' ENGINE = INNODB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+
+
+-- ----------------------------
+-- Records of cheng_film_actor_t
+-- ----------------------------
+INSERT INTO cheng_film_actor_t(UUID,film_id,actor_id,role_name)
+values(1,2,1,'演员1');
+INSERT INTO cheng_film_actor_t(UUID,film_id,actor_id,role_name)
+values(2,2,2,'演员2');
+INSERT INTO cheng_film_actor_t(UUID,film_id,actor_id,role_name)
+values(3,2,3,'演员3');
+INSERT INTO cheng_film_actor_t(UUID,film_id,actor_id,role_name)
+values(4,2,4,'演员4');

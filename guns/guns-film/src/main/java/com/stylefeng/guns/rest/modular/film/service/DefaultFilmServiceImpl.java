@@ -3,9 +3,9 @@ package com.stylefeng.guns.rest.modular.film.service;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
+import com.stylefeng.guns.api.film.FilmServiceApi;
+import com.stylefeng.guns.api.film.vo.*;
 import com.stylefeng.guns.core.util.DateUtil;
-import com.stylefeng.guns.film.FilmServiceApi;
-import com.stylefeng.guns.film.vo.*;
 import com.stylefeng.guns.rest.common.persistence.dao.*;
 import com.stylefeng.guns.rest.common.persistence.model.*;
 import org.springframework.beans.BeanUtils;
@@ -37,6 +37,12 @@ public class DefaultFilmServiceImpl implements FilmServiceApi {
 
     @Autowired
     private ChengYearDictTMapper chengYearDictTMapper;
+
+    @Autowired
+    private ChengFilmInfoTMapper chengFilmInfoTMapper;
+
+    @Autowired
+    private ChengActorTMapper chengActorTMapper;
 
     @Override
     public List<BannerVO> getBanners() {
@@ -358,6 +364,70 @@ public class DefaultFilmServiceImpl implements FilmServiceApi {
         return yearVOList;
     }
 
+    @Override
+    public FilmDetailVO getFilmDetail(int searchType, String searchParam) {
+
+        // searchType 1:名称, 2:Id
+        FilmDetailVO filmDetailVO;
+        if (searchType == 1) {
+            filmDetailVO = chengFilmTMapper.getFilmDetailByName(searchParam);
+        } else {
+            filmDetailVO = chengFilmTMapper.getFilmDetailById(searchParam);
+        }
+
+        return filmDetailVO;
+    }
+
+    @Override
+    public FilmDescVO getFilmDesc(String filmId) {
+
+        FilmDescVO filmDescVO = new FilmDescVO();
+
+        ChengFilmInfoT chengFilmInfoT = getFilmInfo(filmId);
+        filmDescVO.setBiography(chengFilmInfoT.getBiography());
+        filmDescVO.setFilmId(filmId);
+
+        return filmDescVO;
+    }
+
+    @Override
+    public ImgVO getImages(String filmId) {
+
+        ImgVO imgVO = new ImgVO();
+
+        ChengFilmInfoT chengFilmInfoT = getFilmInfo(filmId);
+
+        // filmImgStr: 五个以逗号分隔的链接
+        String filmImgStr = chengFilmInfoT.getFilmImgs();
+        String[] filmImgs = filmImgStr.split(",");
+        imgVO.setMainImg(filmImgs[0]);
+        imgVO.setImg01(filmImgs[1]);
+        imgVO.setImg02(filmImgs[2]);
+        imgVO.setImg03(filmImgs[3]);
+        imgVO.setImg04(filmImgs[4]);
+
+        return imgVO;
+    }
+
+    @Override
+    public ActorVO getDirectorInfo(String filmId) {
+
+        ActorVO actorVO = new ActorVO();
+
+        ChengFilmInfoT chengFilmInfoT = getFilmInfo(filmId);
+        ChengActorT chengActorT = chengActorTMapper.selectById(chengFilmInfoT.getDirectorId());
+
+        actorVO.setImgAddress(chengActorT.getActorImg());
+        actorVO.setDirectorName(chengActorT.getActorName());
+
+        return actorVO;
+    }
+
+    @Override
+    public List<ActorVO> getActors(String filmId) {
+        return chengActorTMapper.getActors(filmId);
+    }
+
     /**
      * ChengFilmT -> FilmInfo
      */
@@ -382,5 +452,13 @@ public class DefaultFilmServiceImpl implements FilmServiceApi {
         });
 
         return filmInfoList;
+    }
+
+    private ChengFilmInfoT getFilmInfo(String filmId) {
+
+        ChengFilmInfoT chengFilmInfoT = new ChengFilmInfoT();
+        chengFilmInfoT.setFilmId(filmId);
+
+        return chengFilmInfoTMapper.selectOne(chengFilmInfoT);
     }
 }

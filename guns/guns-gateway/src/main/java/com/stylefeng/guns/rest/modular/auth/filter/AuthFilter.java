@@ -37,6 +37,7 @@ public class AuthFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
+
         if (request.getServletPath().equals("/" + jwtProperties.getAuthPath())) {
             chain.doFilter(request, response);
             return;
@@ -48,7 +49,7 @@ public class AuthFilter extends OncePerRequestFilter {
         // 比如匹配到这样的路径直接忽略jwt验证:　/user /register
         String[] ignoreUrls = ignoreUrl.split(",");
         for (String url : ignoreUrls) {
-            if (request.getServletPath().equals(url)) {
+            if (request.getServletPath().startsWith(url)) {
                 chain.doFilter(request, response);
                 return;
             }
