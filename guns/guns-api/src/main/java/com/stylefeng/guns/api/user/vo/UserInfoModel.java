@@ -1,4 +1,4 @@
-package com.stylefeng.guns.api.vo;
+package com.stylefeng.guns.api.user.vo;
 
 import lombok.Getter;
 import lombok.Setter;
