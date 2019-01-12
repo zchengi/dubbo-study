@@ -18,12 +18,23 @@ public interface FilmServiceApi {
     /**
      * 获取 热映电影
      */
-    FilmVO getHotFilms(boolean isLimit, int nums);
+    FilmVO getHotFilms(boolean isLimit, int nums, int nowPage, int sortId, int sourceId, int catId, int yearId);
+
+    /**
+     * 推荐做法：扩展接口
+     */
+//    FilmVO getHotFilms(boolean isLimit, int nums...);
+
 
     /**
      * 获取 即将上映影片（按照受欢迎程度降序排列）
      */
-    FilmVO getSoonFilms(boolean isLimit, int nums);
+    FilmVO getSoonFilms(boolean isLimit, int nums, int nowPage, int sortId, int sourceId, int catId, int yearId);
+
+    /**
+     * 获取 经典影片
+     */
+    FilmVO getClassicFilms(int nums, int nowPage, int sortId, int sourceId, int catId, int yearId);
 
     /**
      * 获取 票房排行榜
@@ -56,6 +67,4 @@ public interface FilmServiceApi {
      * 年代条件
      */
     List<YearVO> getYearList();
-
-
 }

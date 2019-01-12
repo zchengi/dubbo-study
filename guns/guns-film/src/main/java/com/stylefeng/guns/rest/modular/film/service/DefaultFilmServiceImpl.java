@@ -57,7 +57,7 @@ public class DefaultFilmServiceImpl implements FilmServiceApi {
     }
 
     @Override
-    public FilmVO getHotFilms(boolean isLimit, int nums) {
+    public FilmVO getHotFilms(boolean isLimit, int nums, int nowPage, int sortId, int sourceId, int catId, int yearId) {
 
         FilmVO filmVO = new FilmVO();
         List<FilmInfo> filmInfoList;
@@ -77,14 +77,59 @@ public class DefaultFilmServiceImpl implements FilmServiceApi {
             filmVO.setFilmInfo(getFilmInfoList(chengFilmTList));
         } else {
             // 否: 为列表页
+            Page<ChengFilmT> page;
 
+            // 根据 sortId，组织排序方式
+            // 1:热门, 2:时间, 3:评价
+            switch (sortId) {
+                case 1:
+                    page = new Page<>(nowPage, nums, "film_box_office");
+                    break;
+                case 2:
+                    page = new Page<>(nowPage, nums, "film_time");
+                    break;
+                case 3:
+                    page = new Page<>(nowPage, nums, "film_score");
+                    break;
+                default:
+                    page = new Page<>(nowPage, nums, "film_box_office");
+                    break;
+            }
+
+            // 如果 sourceId, catId, yearId 不为 99，则表示要按照对应的编号查询
+            if (sourceId != 99) {
+                entityWrapper.eq("film_source", sourceId);
+            }
+            if (catId != 99) {
+                // #2#4#22# (多个类别)
+                String catStr = "%#" + catId + "#%";
+                entityWrapper.eq("film_cats", catStr);
+            }
+            if (yearId != 99) {
+                entityWrapper.eq("film_date", yearId);
+            }
+
+            List<ChengFilmT> chengFilmTList = chengFilmTMapper.selectPage(page, entityWrapper);
+
+            // 组织 filmInfoList
+            filmInfoList = getFilmInfoList(chengFilmTList);
+            filmVO.setFilmNum(chengFilmTList.size());
+
+            // 总页数 totalCounts/nums + 1
+            // 每页10条，现在有6条 -> 1
+            int totalCounts = chengFilmTMapper.selectCount(entityWrapper);
+            int totalPage = totalCounts / nums + 1;
+
+            filmVO.setFilmInfo(filmInfoList);
+            filmVO.setTotalPage(totalPage);
+            filmVO.setNowPage(nowPage);
         }
 
         return filmVO;
     }
 
     @Override
-    public FilmVO getSoonFilms(boolean isLimit, int nums) {
+    public FilmVO getSoonFilms(boolean isLimit, int nums, int nowPage, int sortId, int sourceId, int catId, int yearId) {
 
         FilmVO filmVO = new FilmVO();
         List<FilmInfo> filmInfoList;
@@ -104,8 +149,112 @@ public class DefaultFilmServiceImpl implements FilmServiceApi {
             filmVO.setFilmInfo(getFilmInfoList(chengFilmTList));
         } else {
             // 否: 为列表页
+            Page<ChengFilmT> page;
 
+            // 根据 sortId，组织排序方式
+            // 1:热门, 2:时间, 3:评价
+            switch (sortId) {
+                case 1:
+                    page = new Page<>(nowPage, nums, "film_preSaleNum");
+                    break;
+                case 2:
+                    page = new Page<>(nowPage, nums, "film_time");
+                    break;
+                case 3:
+                    page = new Page<>(nowPage, nums, "film_preSaleNum");
+                    break;
+                default:
+                    page = new Page<>(nowPage, nums, "film_preSaleNum");
+                    break;
+            }
+
+            // 如果 sourceId, catId, yearId 不为 99，则表示要按照对应的编号查询
+            if (sourceId != 99) {
+                entityWrapper.eq("film_source", sourceId);
+            }
+            if (catId != 99) {
+                // #2#4#22# (多个类别)
+                String catStr = "%#" + catId + "#%";
+                entityWrapper.eq("film_cats", catStr);
+            }
+            if (yearId != 99) {
+                entityWrapper.eq("film_date", yearId);
+            }
+
+            List<ChengFilmT> chengFilmTList = chengFilmTMapper.selectPage(page, entityWrapper);
+
+            // 组织 filmInfoList
+            filmInfoList = getFilmInfoList(chengFilmTList);
+            filmVO.setFilmNum(chengFilmTList.size());
+
+            // 总页数 totalCounts/nums + 1
+            // 每页10条，现在有6条 -> 1
+            int totalCounts = chengFilmTMapper.selectCount(entityWrapper);
+            int totalPage = totalCounts / nums + 1;
+
+            filmVO.setFilmInfo(filmInfoList);
+            filmVO.setTotalPage(totalPage);
+            filmVO.setNowPage(nowPage);
         }
+
+        return filmVO;
+    }
+
+    @Override
+    public FilmVO getClassicFilms(int nums, int nowPage, int sortId, int sourceId, int catId, int yearId) {
+
+        FilmVO filmVO = new FilmVO();
+        List<FilmInfo> filmInfoList;
+
+        // 经典影片限制条件
+        EntityWrapper<ChengFilmT> entityWrapper = new EntityWrapper<>();
+        entityWrapper.eq("film_status", 3);
+
+        Page<ChengFilmT> page;
+
+        // 根据 sortId，组织排序方式
+        // 1:热门, 2:时间, 3:评价
+        switch (sortId) {
+            case 1:
+                page = new Page<>(nowPage, nums, "film_box_office");
+                break;
+            case 2:
+                page = new Page<>(nowPage, nums, "film_time");
+                break;
+            case 3:
+                page = new Page<>(nowPage, nums, "film_score");
+                break;
+            default:
+                page = new Page<>(nowPage, nums, "film_box_office");
+                break;
+        }
+
+        // 如果 sourceId, catId, yearId 不为 99，则表示要按照对应的编号查询
+        if (sourceId != 99) {
+            entityWrapper.eq("film_source", sourceId);
+        }
+        if (catId != 99) {
+            // #2#4#22# (多个类别)
+            String catStr = "%#" + catId + "#%";
+            entityWrapper.eq("film_cats", catStr);
+        }
+        if (yearId != 99) {
+            entityWrapper.eq("film_date", yearId);
+        }
+
+        List<ChengFilmT> chengFilmTList = chengFilmTMapper.selectPage(page, entityWrapper);
+        // 组织 filmInfoList
+        filmInfoList = getFilmInfoList(chengFilmTList);
+        filmVO.setFilmNum(chengFilmTList.size());
+
+        // 总页数 totalCounts/nums + 1
+        // 每页10条，现在有6条 -> 1
+        int totalCounts = chengFilmTMapper.selectCount(entityWrapper);
+        int totalPage = totalCounts / nums + 1;
+
+        filmVO.setFilmInfo(filmInfoList);
+        filmVO.setTotalPage(totalPage);
+        filmVO.setNowPage(nowPage);
 
         return filmVO;
     }

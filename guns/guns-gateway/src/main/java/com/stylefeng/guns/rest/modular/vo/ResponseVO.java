@@ -17,7 +17,7 @@ public class ResponseVO<T> {
      * 1: 失败
      * 999: 系统异常
      */
-    private int status;
+    private Integer status;
 
     private String msg;
 
@@ -27,6 +27,12 @@ public class ResponseVO<T> {
      * 图片路径前缀
      */
     private String imgPre;
+
+    /**
+     * 分页
+     */
+    private Integer nowPage;
+    private Integer totalPage;
 
     private ResponseVO() {
     }
@@ -48,6 +54,19 @@ public class ResponseVO<T> {
         responseVO.setStatus(0);
         responseVO.setData(t);
         responseVO.setImgPre(imgPre);
+
+        return responseVO;
+    }
+
+    public static <T> ResponseVO success(String imgPre, T t, int nowPage, int totalPage) {
+
+        ResponseVO<T> responseVO = new ResponseVO<>();
+
+        responseVO.setStatus(0);
+        responseVO.setData(t);
+        responseVO.setImgPre(imgPre);
+        responseVO.setNowPage(nowPage);
+        responseVO.setTotalPage(totalPage);
 
         return responseVO;
     }
