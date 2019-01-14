@@ -10,7 +10,7 @@ public class ErrorTip extends Tip {
 
     public ErrorTip(int code, String message) {
         super();
-        this.code = code;
-        this.message = message;
+        super.status = 999;
+        super.msg = "系统出现异常，请联系管理员";
     }
 }

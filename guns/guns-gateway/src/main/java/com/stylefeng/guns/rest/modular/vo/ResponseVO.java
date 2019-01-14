@@ -17,7 +17,7 @@ public class ResponseVO<T> {
      * 1: 失败
      * 999: 系统异常
      */
-    private Integer status;
+    private int status;
 
     private String msg;
 
@@ -31,8 +31,8 @@ public class ResponseVO<T> {
     /**
      * 分页
      */
-    private Integer nowPage;
-    private Integer totalPage;
+    private int nowPage;
+    private int totalPage;
 
     private ResponseVO() {
     }
