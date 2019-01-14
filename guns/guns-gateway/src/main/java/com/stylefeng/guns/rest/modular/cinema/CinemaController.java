@@ -27,7 +27,8 @@ public class CinemaController {
 
     private static final String IMG_PRE = "http://www.chengix.com";
 
-    @Reference(interfaceClass = CinemaServiceApi.class, check = false, cache = "lru")
+    @Reference(interfaceClass = CinemaServiceApi.class,
+            check = false, cache = "lru", connections = 20)
     private CinemaServiceApi cinemaServiceApi;
 
     /**

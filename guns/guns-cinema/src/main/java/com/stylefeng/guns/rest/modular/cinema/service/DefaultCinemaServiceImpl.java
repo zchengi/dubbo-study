@@ -21,7 +21,7 @@ import java.util.List;
  *         2019/1/13 22:48
  */
 @Component
-@Service(interfaceClass = CinemaServiceApi.class)
+@Service(interfaceClass = CinemaServiceApi.class, executes = 10)
 public class DefaultCinemaServiceImpl implements CinemaServiceApi {
 
     @Autowired
