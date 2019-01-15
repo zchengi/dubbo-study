@@ -1,7 +1,7 @@
 package com.stylefeng.guns.rest.modular.film.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
-import com.stylefeng.guns.api.film.FilmAsyncServiceApi;
+import com.stylefeng.guns.api.film.FilmAsyncServiceAPI;
 import com.stylefeng.guns.api.film.vo.ActorVO;
 import com.stylefeng.guns.api.film.vo.FilmDescVO;
 import com.stylefeng.guns.api.film.vo.ImgVO;
@@ -19,8 +19,8 @@ import java.util.List;
  *         2019/1/11 21:08
  */
 @Component
-@Service(interfaceClass = FilmAsyncServiceApi.class)
-public class DefaultFilmAsyncServiceImpl implements FilmAsyncServiceApi {
+@Service(interfaceClass = FilmAsyncServiceAPI.class)
+public class DefaultFilmAsyncServiceImpl implements FilmAsyncServiceAPI {
 
     @Autowired
     private ChengFilmInfoTMapper chengFilmInfoTMapper;

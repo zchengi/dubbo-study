@@ -3,13 +3,10 @@ package com.stylefeng.guns.rest.modular.cinema.service;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
-import com.stylefeng.guns.api.cinema.CinemaServiceApi;
+import com.stylefeng.guns.api.cinema.CinemaServiceAPI;
 import com.stylefeng.guns.api.cinema.vo.*;
 import com.stylefeng.guns.rest.common.persistence.dao.*;
-import com.stylefeng.guns.rest.common.persistence.model.ChengAreaDictT;
-import com.stylefeng.guns.rest.common.persistence.model.ChengBrandDictT;
-import com.stylefeng.guns.rest.common.persistence.model.ChengCinemaT;
-import com.stylefeng.guns.rest.common.persistence.model.ChengHallDictT;
+import com.stylefeng.guns.rest.common.persistence.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -21,8 +18,8 @@ import java.util.List;
  *         2019/1/13 22:48
  */
 @Component
-@Service(interfaceClass = CinemaServiceApi.class, executes = 10)
-public class DefaultCinemaServiceImpl implements CinemaServiceApi {
+@Service(interfaceClass = CinemaServiceAPI.class, executes = 10)
+public class DefaultCinemaServiceImpl implements CinemaServiceAPI {
 
     @Autowired
     private ChengAreaDictTMapper chengAreaDictTMapper;
@@ -246,5 +243,17 @@ public class DefaultCinemaServiceImpl implements CinemaServiceApi {
     @Override
     public FilmInfoVO getFilmInfoByFieldId(int fieldId) {
         return chengFieldTMapper.getFilmInfoById(fieldId);
+    }
+
+    @Override
+    public OrderQueryVO getOrderNeeds(int fieldId) {
+
+        OrderQueryVO orderQueryVO = new OrderQueryVO();
+
+        ChengFieldT chengFieldT = chengFieldTMapper.selectById(fieldId);
+        orderQueryVO.setCinemaId(String.valueOf(chengFieldT.getCinemaId()));
+        orderQueryVO.setFilmPrice(String.valueOf(chengFieldT.getPrice()));
+
+        return orderQueryVO;
     }
 }

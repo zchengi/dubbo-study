@@ -2,8 +2,8 @@ package com.stylefeng.guns.rest.modular.film;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.rpc.RpcContext;
-import com.stylefeng.guns.api.film.FilmAsyncServiceApi;
-import com.stylefeng.guns.api.film.FilmServiceApi;
+import com.stylefeng.guns.api.film.FilmAsyncServiceAPI;
+import com.stylefeng.guns.api.film.FilmServiceAPI;
 import com.stylefeng.guns.api.film.vo.*;
 import com.stylefeng.guns.rest.modular.film.vo.FilmConditionVO;
 import com.stylefeng.guns.rest.modular.film.vo.FilmIndexVO;
@@ -25,11 +25,11 @@ public class FilmController {
 
     private static final String IMG_PRE = "https://www.chengix.com";
 
-    @Reference(interfaceClass = FilmServiceApi.class, check = false)
-    private FilmServiceApi filmServiceApi;
+    @Reference(interfaceClass = FilmServiceAPI.class, check = false)
+    private FilmServiceAPI filmServiceApi;
 
-    @Reference(interfaceClass = FilmAsyncServiceApi.class, async = true, check = false)
-    private FilmAsyncServiceApi filmAsyncServiceApi;
+    @Reference(interfaceClass = FilmAsyncServiceAPI.class, async = true, check = false)
+    private FilmAsyncServiceAPI filmAsyncServiceApi;
 
     /**
      * 首页

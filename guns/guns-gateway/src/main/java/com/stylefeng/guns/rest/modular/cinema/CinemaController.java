@@ -2,8 +2,9 @@ package com.stylefeng.guns.rest.modular.cinema;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.baomidou.mybatisplus.plugins.Page;
-import com.stylefeng.guns.api.cinema.CinemaServiceApi;
+import com.stylefeng.guns.api.cinema.CinemaServiceAPI;
 import com.stylefeng.guns.api.cinema.vo.*;
+import com.stylefeng.guns.api.order.OrderServiceAPI;
 import com.stylefeng.guns.rest.modular.cinema.vo.CinemaConditionResponseVO;
 import com.stylefeng.guns.rest.modular.cinema.vo.CinemaFieldResponseVO;
 import com.stylefeng.guns.rest.modular.cinema.vo.CinemaFieldsResponseVO;
@@ -27,9 +28,12 @@ public class CinemaController {
 
     private static final String IMG_PRE = "http://www.chengix.com";
 
-    @Reference(interfaceClass = CinemaServiceApi.class,
+    @Reference(interfaceClass = CinemaServiceAPI.class,
             check = false, cache = "lru", connections = 20)
-    private CinemaServiceApi cinemaServiceApi;
+    private CinemaServiceAPI cinemaServiceApi;
+
+    @Reference(interfaceClass = OrderServiceAPI.class, check = false)
+    private OrderServiceAPI orderServiceAPI;
 
     /**
      * 查询影院列表
@@ -113,8 +117,7 @@ public class CinemaController {
             FilmInfoVO filmInfoByFieldId = cinemaServiceApi.getFilmInfoByFieldId(fieldId);
             HallInfoVO filmFieldInfo = cinemaServiceApi.getFilmFieldInfo(fieldId);
 
-            // 造几个销售的假数据，后续会对接订单接口
-            filmFieldInfo.setSoldSeats("1,2,3");
+            filmFieldInfo.setSoldSeats(orderServiceAPI.getSoldSeatsByFieldId(fieldId));
 
             CinemaFieldResponseVO cinemaFieldResponseVO = new CinemaFieldResponseVO();
             cinemaFieldResponseVO.setCinemaInfo(cinemaInfoById);

@@ -3,7 +3,7 @@ package com.stylefeng.guns.rest.modular.film.service;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
-import com.stylefeng.guns.api.film.FilmServiceApi;
+import com.stylefeng.guns.api.film.FilmServiceAPI;
 import com.stylefeng.guns.api.film.vo.*;
 import com.stylefeng.guns.core.util.DateUtil;
 import com.stylefeng.guns.rest.common.persistence.dao.*;
@@ -20,8 +20,8 @@ import java.util.List;
  *         2019/1/11 21:08
  */
 @Component
-@Service(interfaceClass = FilmServiceApi.class)
-public class DefaultFilmServiceImpl implements FilmServiceApi {
+@Service(interfaceClass = FilmServiceAPI.class)
+public class DefaultFilmServiceImpl implements FilmServiceAPI {
 
     @Autowired
     private ChengBannerTMapper chengBannerTMapper;
