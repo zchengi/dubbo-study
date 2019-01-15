@@ -44,7 +44,7 @@ public class Consumer {
 //            System.out.println(send + ", " + send2
             System.out.println(sendFuture.get() + ", " + sendFuture2.get()
                     + ", send 执行时间: " + (sendEndTime - beginTime)
-                    + ", sen2 执行时间: " + (sendEndTime2 - beginTime));
+                    + ", send2 执行时间: " + (sendEndTime2 - beginTime));
         }
     }
 }

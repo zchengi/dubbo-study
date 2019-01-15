@@ -4,11 +4,11 @@
 DROP TABLE IF EXISTS `cheng_banner_t`;
 CREATE TABLE cheng_banner_t
 (
-  UUID           INT PRIMARY KEY AUTO_INCREMENT COMMENT 'Ö÷¼ü±àºÅ',
-  banner_address VARCHAR(50) COMMENT 'bannerÍ¼´æ·ÅÂ·¾¶',
-  banner_url     VARCHAR(200) COMMENT 'bannerµã»÷Ìø×ªurl',
-  is_valid       INT DEFAULT 0 COMMENT 'ÊÇ·ñÆúÓÃ 0-Ê§Ğ§,1-Ê§Ğ§'
-) COMMENT 'bannerĞÅÏ¢±í' ENGINE = INNODB
+  UUID           INT PRIMARY KEY AUTO_INCREMENT COMMENT 'ä¸»é”®ç¼–å·',
+  banner_address VARCHAR(50) COMMENT 'bannerå›¾å­˜æ”¾è·¯å¾„',
+  banner_url     VARCHAR(200) COMMENT 'bannerç‚¹å‡»è·³è½¬url',
+  is_valid       INT DEFAULT 0 COMMENT 'æ˜¯å¦å¼ƒç”¨ 0-å¤±æ•ˆ,1-å¤±æ•ˆ'
+) COMMENT 'bannerä¿¡æ¯è¡¨' ENGINE = INNODB
                       AUTO_INCREMENT = 2
                       CHARACTER SET = utf8
                       COLLATE = utf8_general_ci
@@ -36,9 +36,9 @@ VALUES ('banners/c1a713981cabef02c88ae5f42888de70183835.jpg', 'www.meetingshop.c
 DROP TABLE IF EXISTS `cheng_cat_dict_t`;
 CREATE TABLE cheng_cat_dict_t
 (
-  UUID      INT PRIMARY KEY AUTO_INCREMENT COMMENT 'Ö÷¼ü±àºÅ',
-  show_name VARCHAR(100) COMMENT 'ÏÔÊ¾Ãû³Æ'
-) COMMENT 'ÀàĞÍĞÅÏ¢±í' ENGINE = INNODB
+  UUID      INT PRIMARY KEY AUTO_INCREMENT COMMENT 'ä¸»é”®ç¼–å·',
+  show_name VARCHAR(100) COMMENT 'æ˜¾ç¤ºåç§°'
+) COMMENT 'ç±»å‹ä¿¡æ¯è¡¨' ENGINE = INNODB
                   AUTO_INCREMENT = 2
                   CHARACTER SET = utf8
                   COLLATE = utf8_general_ci
@@ -49,55 +49,55 @@ CREATE TABLE cheng_cat_dict_t
 -- Records of cheng_cat_dict_t
 -- ----------------------------
 INSERT INTO cheng_cat_dict_t(uuid, show_name)
-values (99, 'È«²¿');
+values (99, 'å…¨éƒ¨');
 INSERT INTO cheng_cat_dict_t(uuid, show_name)
-values (1, '°®Çé');
+values (1, 'çˆ±æƒ…');
 INSERT INTO cheng_cat_dict_t(uuid, show_name)
-values (2, 'Ï²¾ç');
+values (2, 'å–œå‰§');
 INSERT INTO cheng_cat_dict_t(uuid, show_name)
-values (3, '¶¯»­');
+values (3, 'åŠ¨ç”»');
 INSERT INTO cheng_cat_dict_t(uuid, show_name)
-values (4, '¾çÇé');
+values (4, 'å‰§æƒ…');
 INSERT INTO cheng_cat_dict_t(uuid, show_name)
-values (5, '¿Ö²À');
+values (5, 'ææ€–');
 INSERT INTO cheng_cat_dict_t(uuid, show_name)
-values (6, '¾ªã¤');
+values (6, 'æƒŠæ‚š');
 INSERT INTO cheng_cat_dict_t(uuid, show_name)
-values (7, '¿Æ»Ã');
+values (7, 'ç§‘å¹»');
 INSERT INTO cheng_cat_dict_t(uuid, show_name)
-values (8, '¶¯×÷');
+values (8, 'åŠ¨ä½œ');
 INSERT INTO cheng_cat_dict_t(uuid, show_name)
-values (9, 'ĞüÒÉ');
+values (9, 'æ‚¬ç–‘');
 INSERT INTO cheng_cat_dict_t(uuid, show_name)
-values (10, '·¸×ï');
+values (10, 'çŠ¯ç½ª');
 INSERT INTO cheng_cat_dict_t(uuid, show_name)
-values (11, 'Ã°ÏÕ');
+values (11, 'å†’é™©');
 INSERT INTO cheng_cat_dict_t(uuid, show_name)
-values (12, 'Õ½Õù');
+values (12, 'æˆ˜äº‰');
 INSERT INTO cheng_cat_dict_t(uuid, show_name)
-values (13, 'Ææ»Ã');
+values (13, 'å¥‡å¹»');
 INSERT INTO cheng_cat_dict_t(uuid, show_name)
-values (14, 'ÔË¶¯');
+values (14, 'è¿åŠ¨');
 INSERT INTO cheng_cat_dict_t(uuid, show_name)
-values (15, '¼ÒÍ¥');
+values (15, 'å®¶åº­');
 INSERT INTO cheng_cat_dict_t(uuid, show_name)
-values (16, '¹Å×°');
+values (16, 'å¤è£…');
 INSERT INTO cheng_cat_dict_t(uuid, show_name)
-values (17, 'ÎäÏÀ');
+values (17, 'æ­¦ä¾ ');
 INSERT INTO cheng_cat_dict_t(uuid, show_name)
-values (18, 'Î÷²¿');
+values (18, 'è¥¿éƒ¨');
 INSERT INTO cheng_cat_dict_t(uuid, show_name)
-values (19, 'ÀúÊ·');
+values (19, 'å†å²');
 INSERT INTO cheng_cat_dict_t(uuid, show_name)
-values (20, '´«¼Ç');
+values (20, 'ä¼ è®°');
 INSERT INTO cheng_cat_dict_t(uuid, show_name)
-values (21, '¸èÎè');
+values (21, 'æ­Œèˆ');
 INSERT INTO cheng_cat_dict_t(uuid, show_name)
-values (22, '¶ÌÆ¬');
+values (22, 'çŸ­ç‰‡');
 INSERT INTO cheng_cat_dict_t(uuid, show_name)
-values (23, '¼ÍÂ¼Æ¬');
+values (23, 'çºªå½•ç‰‡');
 INSERT INTO cheng_cat_dict_t(uuid, show_name)
-values (24, 'ºÚÉ«µçÓ°');
+values (24, 'é»‘è‰²ç”µå½±');
 
 
 -- ----------------------------
@@ -106,9 +106,9 @@ values (24, 'ºÚÉ«µçÓ°');
 DROP TABLE IF EXISTS cheng_source_dict_t;
 CREATE TABLE cheng_source_dict_t
 (
-  UUID      INT PRIMARY KEY AUTO_INCREMENT COMMENT 'Ö÷¼ü±àºÅ',
-  show_name VARCHAR(100) COMMENT 'ÏÔÊ¾Ãû³Æ'
-) COMMENT 'ÇøÓòĞÅÏ¢±í' ENGINE = INNODB
+  UUID      INT PRIMARY KEY AUTO_INCREMENT COMMENT 'ä¸»é”®ç¼–å·',
+  show_name VARCHAR(100) COMMENT 'æ˜¾ç¤ºåç§°'
+) COMMENT 'åŒºåŸŸä¿¡æ¯è¡¨' ENGINE = INNODB
                   AUTO_INCREMENT = 2
                   CHARACTER SET = utf8
                   COLLATE = utf8_general_ci
@@ -119,39 +119,39 @@ CREATE TABLE cheng_source_dict_t
 -- Records of cheng_source_dict_t
 -- ----------------------------
 INSERT INTO cheng_source_dict_t(uuid, show_name)
-values (99, 'È«²¿');
+values (99, 'å…¨éƒ¨');
 INSERT INTO cheng_source_dict_t(uuid, show_name)
-values (1, '´óÂ½');
+values (1, 'å¤§é™†');
 INSERT INTO cheng_source_dict_t(uuid, show_name)
-values (2, 'ÃÀ¹ú');
+values (2, 'ç¾å›½');
 INSERT INTO cheng_source_dict_t(uuid, show_name)
-values (3, 'º«¹ú');
+values (3, 'éŸ©å›½');
 INSERT INTO cheng_source_dict_t(uuid, show_name)
-values (4, 'ÈÕ±¾');
+values (4, 'æ—¥æœ¬');
 INSERT INTO cheng_source_dict_t(uuid, show_name)
-values (5, 'ÖĞ¹úÏã¸Û');
+values (5, 'ä¸­å›½é¦™æ¸¯');
 INSERT INTO cheng_source_dict_t(uuid, show_name)
-values (6, 'ÖĞ¹úÌ¨Íå');
+values (6, 'ä¸­å›½å°æ¹¾');
 INSERT INTO cheng_source_dict_t(uuid, show_name)
-values (7, 'Ó¡¶È');
+values (7, 'å°åº¦');
 INSERT INTO cheng_source_dict_t(uuid, show_name)
-values (8, '·¨¹ú');
+values (8, 'æ³•å›½');
 INSERT INTO cheng_source_dict_t(uuid, show_name)
-values (9, 'Ó¢¹ú');
+values (9, 'è‹±å›½');
 INSERT INTO cheng_source_dict_t(uuid, show_name)
-values (10, '¶íÂŞË¹');
+values (10, 'ä¿„ç½—æ–¯');
 INSERT INTO cheng_source_dict_t(uuid, show_name)
-values (11, 'Òâ´óÀû');
+values (11, 'æ„å¤§åˆ©');
 INSERT INTO cheng_source_dict_t(uuid, show_name)
-values (12, 'Î÷°àÑÀ');
+values (12, 'è¥¿ç­ç‰™');
 INSERT INTO cheng_source_dict_t(uuid, show_name)
-values (13, 'µÂ¹ú');
+values (13, 'å¾·å›½');
 INSERT INTO cheng_source_dict_t(uuid, show_name)
-values (14, '²¨À¼');
+values (14, 'æ³¢å…°');
 INSERT INTO cheng_source_dict_t(uuid, show_name)
-values (15, '°Ä´óÀûÑÇ');
+values (15, 'æ¾³å¤§åˆ©äºš');
 INSERT INTO cheng_source_dict_t(uuid, show_name)
-values (16, 'ÒÁÀÊ');
+values (16, 'ä¼Šæœ—');
 
 
 -- ----------------------------
@@ -160,9 +160,9 @@ values (16, 'ÒÁÀÊ');
 DROP TABLE IF EXISTS `cheng_year_dict_t`;
 CREATE TABLE cheng_year_dict_t
 (
-  UUID      INT PRIMARY KEY AUTO_INCREMENT COMMENT 'Ö÷¼ü±àºÅ',
-  show_name VARCHAR(100) COMMENT 'ÏÔÊ¾Ãû³Æ'
-) COMMENT 'Äê´úĞÅÏ¢±í' ENGINE = INNODB
+  UUID      INT PRIMARY KEY AUTO_INCREMENT COMMENT 'ä¸»é”®ç¼–å·',
+  show_name VARCHAR(100) COMMENT 'æ˜¾ç¤ºåç§°'
+) COMMENT 'å¹´ä»£ä¿¡æ¯è¡¨' ENGINE = INNODB
                   AUTO_INCREMENT = 2
                   CHARACTER SET = utf8
                   COLLATE = utf8_general_ci
@@ -173,15 +173,15 @@ CREATE TABLE cheng_year_dict_t
 -- Records of cheng_year_dict_t
 -- ----------------------------
 INSERT INTO cheng_year_dict_t(uuid, show_name)
-values (99, 'È«²¿');
+values (99, 'å…¨éƒ¨');
 INSERT INTO cheng_year_dict_t(uuid, show_name)
-values (1, '¸üÔç');
+values (1, 'æ›´æ—©');
 INSERT INTO cheng_year_dict_t(uuid, show_name)
-values (2, '70Äê´ú');
+values (2, '70å¹´ä»£');
 INSERT INTO cheng_year_dict_t(uuid, show_name)
-values (3, '80Äê´ú');
+values (3, '80å¹´ä»£');
 INSERT INTO cheng_year_dict_t(uuid, show_name)
-values (4, '90Äê´ú');
+values (4, '90å¹´ä»£');
 INSERT INTO cheng_year_dict_t(uuid, show_name)
 values (5, '2000-2010');
 INSERT INTO cheng_year_dict_t(uuid, show_name)
@@ -201,7 +201,7 @@ values (12, '2017');
 INSERT INTO cheng_year_dict_t(uuid, show_name)
 values (13, '2018');
 INSERT INTO cheng_year_dict_t(uuid, show_name)
-values (14, '2018ÒÔºó');
+values (14, '2018ä»¥å');
 
 
 -- ----------------------------
@@ -210,20 +210,20 @@ values (14, '2018ÒÔºó');
 DROP TABLE IF EXISTS `cheng_film_t`;
 CREATE TABLE cheng_film_t
 (
-  UUID            INT PRIMARY KEY AUTO_INCREMENT COMMENT 'Ö÷¼ü±àºÅ',
-  film_name       VARCHAR(100) COMMENT 'Ó°Æ¬Ãû³Æ',
-  film_type       INT COMMENT 'Æ¬Ô´ÀàĞÍ: 0-2D,1-3D,2-3DIMAX,4-ÎŞ',
-  img_address     VARCHAR(200) COMMENT 'Ó°Æ¬Ö÷Í¼µØÖ·',
-  film_score      VARCHAR(20) COMMENT 'Ó°Æ¬ÆÀ·Ö',
-  film_preSaleNum INT COMMENT 'Ó°Æ¬Ô¤ÊÛÊıÁ¿',
-  film_box_office INT COMMENT 'Ó°Æ¬Æ±·¿£ºÃ¿ÈÕ¸üĞÂ£¬ÒÔÍòÎªµ¥Î»',
-  film_source     INT COMMENT 'Ó°Æ¬Æ¬Ô´£¬²ÎÕÕÆ¬Ô´×Öµä±í',
-  film_cats       VARCHAR(50) COMMENT 'Ó°Æ¬·ÖÀà£¬²ÎÕÕ·ÖÀà±í,¶à¸ö·ÖÀàÒÔ#·Ö¸î',
-  film_area       INT COMMENT 'Ó°Æ¬ÇøÓò£¬²ÎÕÕÇøÓò±í',
-  film_date       INT COMMENT 'Ó°Æ¬ÉÏÓ³Äê´ú£¬²ÎÕÕÄê´ú±í',
-  film_time       TIMESTAMP COMMENT 'Ó°Æ¬ÉÏÓ³Ê±¼ä',
-  film_status     INT COMMENT 'Ó°Æ¬×´Ì¬,1-ÕıÔÚÈÈÓ³£¬2-¼´½«ÉÏÓ³£¬3-¾­µäÓ°Æ¬'
-) COMMENT 'Ó°Æ¬Ö÷±í' ENGINE = INNODB
+  UUID            INT PRIMARY KEY AUTO_INCREMENT COMMENT 'ä¸»é”®ç¼–å·',
+  film_name       VARCHAR(100) COMMENT 'å½±ç‰‡åç§°',
+  film_type       INT COMMENT 'ç‰‡æºç±»å‹: 0-2D,1-3D,2-3DIMAX,4-æ— ',
+  img_address     VARCHAR(200) COMMENT 'å½±ç‰‡ä¸»å›¾åœ°å€',
+  film_score      VARCHAR(20) COMMENT 'å½±ç‰‡è¯„åˆ†',
+  film_preSaleNum INT COMMENT 'å½±ç‰‡é¢„å”®æ•°é‡',
+  film_box_office INT COMMENT 'å½±ç‰‡ç¥¨æˆ¿ï¼šæ¯æ—¥æ›´æ–°ï¼Œä»¥ä¸‡ä¸ºå•ä½',
+  film_source     INT COMMENT 'å½±ç‰‡ç‰‡æºï¼Œå‚ç…§ç‰‡æºå­—å…¸è¡¨',
+  film_cats       VARCHAR(50) COMMENT 'å½±ç‰‡åˆ†ç±»ï¼Œå‚ç…§åˆ†ç±»è¡¨,å¤šä¸ªåˆ†ç±»ä»¥#åˆ†å‰²',
+  film_area       INT COMMENT 'å½±ç‰‡åŒºåŸŸï¼Œå‚ç…§åŒºåŸŸè¡¨',
+  film_date       INT COMMENT 'å½±ç‰‡ä¸Šæ˜ å¹´ä»£ï¼Œå‚ç…§å¹´ä»£è¡¨',
+  film_time       TIMESTAMP COMMENT 'å½±ç‰‡ä¸Šæ˜ æ—¶é—´',
+  film_status     INT COMMENT 'å½±ç‰‡çŠ¶æ€,1-æ­£åœ¨çƒ­æ˜ ï¼Œ2-å³å°†ä¸Šæ˜ ï¼Œ3-ç»å…¸å½±ç‰‡'
+) COMMENT 'å½±ç‰‡ä¸»è¡¨' ENGINE = INNODB
                  AUTO_INCREMENT = 2
                  CHARACTER SET = utf8
                  COLLATE = utf8_general_ci
@@ -234,8 +234,8 @@ CREATE TABLE cheng_film_t
 -- Records of cheng_film_t
 -- ----------------------------
 INSERT INTO cheng_film_t(uuid, film_name, film_source, film_type, film_cats, film_area, film_date, film_time,
-                        film_preSaleNum, film_box_office, film_score, film_status, img_address)
-values (2, 'ÎÒ²»ÊÇÒ©Éñ', 1, 0, '#2#4#22#', 1, 13, '2018-07-05', 231432491, 309600, '9.7', 1,
+                         film_preSaleNum, film_box_office, film_score, film_status, img_address)
+values (2, 'æˆ‘ä¸æ˜¯è¯ç¥', 1, 0, '#2#4#22#', 1, 13, '2018-07-05', 231432491, 309600, '9.7', 1,
         'films/238e2dc36beae55a71cabfc14069fe78236351.jpg');
 
 
@@ -245,16 +245,16 @@ values (2, 'ÎÒ²»ÊÇÒ©Éñ', 1, 0, '#2#4#22#', 1, 13, '2018-07-05', 231432491, 30960
 DROP TABLE IF EXISTS `cheng_film_info_t`;
 CREATE TABLE cheng_film_info_t
 (
-  UUID           INT PRIMARY KEY AUTO_INCREMENT COMMENT 'Ö÷¼ü±àºÅ',
-  film_id        VARCHAR(100) COMMENT 'Ó°Æ¬±àºÅ',
-  film_en_name   VARCHAR(50) COMMENT 'Ó°Æ¬Ó¢ÎÄÃû³Æ',
-  film_score     VARCHAR(20) COMMENT 'Ó°Æ¬ÆÀ·Ö',
-  film_score_num INT COMMENT 'ÆÀ·ÖÈËÊı,ÒÔÍòÎªµ¥Î»',
-  film_length    INT COMMENT '²¥·ÅÊ±³¤£¬ÒÔ·ÖÖÓÎªµ¥Î»£¬²»×ãÈ¡Õû',
-  biography      TEXT COMMENT 'Ó°Æ¬½éÉÜ',
-  director_id    INT COMMENT 'µ¼Ñİ±àºÅ',
-  film_imgs      TEXT COMMENT 'Ó°Æ¬Í¼Æ¬¼¯µØÖ·,¶à¸öÍ¼Æ¬ÒÔ¶ººÅ·Ö¸ô'
-) COMMENT 'Ó°Æ¬Ö÷±í' ENGINE = INNODB
+  UUID           INT PRIMARY KEY AUTO_INCREMENT COMMENT 'ä¸»é”®ç¼–å·',
+  film_id        VARCHAR(100) COMMENT 'å½±ç‰‡ç¼–å·',
+  film_en_name   VARCHAR(50) COMMENT 'å½±ç‰‡è‹±æ–‡åç§°',
+  film_score     VARCHAR(20) COMMENT 'å½±ç‰‡è¯„åˆ†',
+  film_score_num INT COMMENT 'è¯„åˆ†äººæ•°,ä»¥ä¸‡ä¸ºå•ä½',
+  film_length    INT COMMENT 'æ’­æ”¾æ—¶é•¿ï¼Œä»¥åˆ†é’Ÿä¸ºå•ä½ï¼Œä¸è¶³å–æ•´',
+  biography      TEXT COMMENT 'å½±ç‰‡ä»‹ç»',
+  director_id    INT COMMENT 'å¯¼æ¼”ç¼–å·',
+  film_imgs      TEXT COMMENT 'å½±ç‰‡å›¾ç‰‡é›†åœ°å€,å¤šä¸ªå›¾ç‰‡ä»¥é€—å·åˆ†éš”'
+) COMMENT 'å½±ç‰‡ä¸»è¡¨' ENGINE = INNODB
                  AUTO_INCREMENT = 2
                  CHARACTER SET = utf8
                  COLLATE = utf8_general_ci
@@ -265,10 +265,10 @@ CREATE TABLE cheng_film_info_t
 -- Records of cheng_film_info_t
 -- ----------------------------
 INSERT INTO cheng_film_info_t(film_id, film_en_name, film_score, film_score_num, film_length, director_id, film_imgs,
-                             biography)
+                              biography)
 values (2, 'Dying To Survive', '9.7', 225, 117, 1,
         'films/3065271341357040f5f5dd988550951e586199.jpg,films/6b2b3fd6260ac37e5ad44d00ea474ea3651419.jpg,films/4633dd44c51ff15fc7e939679d7cdb67561602.jpg,films/df2d30b1a3bd58fb1d38b978662ae844648169.jpg,films/c845f6b04aa49059951fd55e6b0eddac454036.jpg',
-        'Ò»Î»²»ËÙÖ®¿ÍµÄÒâÍâµ½·Ã£¬´òÆÆÁËÉñÓÍµêÀÏ°å³ÌÓÂ£¨Ğìá¿ ÊÎ£©µÄÆ½·²ÈËÉú£¬Ëû´ÓÒ»¸ö½»²»Æğ·¿×âµÄÄĞĞÔ±£½¡Æ·ÉÌ··£¬Ò»Ô¾³ÉÎªÓ¡¶È·ÂÖÆÒ©¡°¸ñÁĞÄş¡±µÄ¶À¼Ò´úÀíÉÌ¡£ÊÕ»ñ¾Ş¶îÀûÈóµÄËû£¬Éú»î¾çÁÒ±ä»¯£¬±»²¡»¼ÃÇ¹ÚÒÔ¡°Ò©Éñ¡±µÄ³ÆºÅ¡£µ«ÊÇ£¬Ò»³¡¹ØÓÚ¾ÈÊêµÄÀ­¾âÕ½Ò²ÔÚ²¨ÌÎ°µÓ¿ÖĞÂıÂıÕ¹¿ª......');
+        'ä¸€ä½ä¸é€Ÿä¹‹å®¢çš„æ„å¤–åˆ°è®¿ï¼Œæ‰“ç ´äº†ç¥æ²¹åº—è€æ¿ç¨‹å‹‡ï¼ˆå¾å³¥ é¥°ï¼‰çš„å¹³å‡¡äººç”Ÿï¼Œä»–ä»ä¸€ä¸ªäº¤ä¸èµ·æˆ¿ç§Ÿçš„ç”·æ€§ä¿å¥å“å•†è´©ï¼Œä¸€è·ƒæˆä¸ºå°åº¦ä»¿åˆ¶è¯â€œæ ¼åˆ—å®â€çš„ç‹¬å®¶ä»£ç†å•†ã€‚æ”¶è·å·¨é¢åˆ©æ¶¦çš„ä»–ï¼Œç”Ÿæ´»å‰§çƒˆå˜åŒ–ï¼Œè¢«ç—…æ‚£ä»¬å† ä»¥â€œè¯ç¥â€çš„ç§°å·ã€‚ä½†æ˜¯ï¼Œä¸€åœºå…³äºæ•‘èµçš„æ‹‰é”¯æˆ˜ä¹Ÿåœ¨æ³¢æ¶›æš—æ¶Œä¸­æ…¢æ…¢å±•å¼€......');
 
 
 -- ----------------------------
@@ -277,10 +277,10 @@ values (2, 'Dying To Survive', '9.7', 225, 117, 1,
 DROP TABLE IF EXISTS `cheng_actor_t`;
 CREATE TABLE cheng_actor_t
 (
-  UUID       INT PRIMARY KEY AUTO_INCREMENT COMMENT 'Ö÷¼ü±àºÅ',
-  actor_name VARCHAR(50) COMMENT 'ÑİÔ±Ãû³Æ',
-  actor_img  VARCHAR(200) COMMENT 'ÑİÔ±Í¼Æ¬Î»ÖÃ'
-) COMMENT 'ÑİÔ±±í' ENGINE = INNODB
+  UUID       INT PRIMARY KEY AUTO_INCREMENT COMMENT 'ä¸»é”®ç¼–å·',
+  actor_name VARCHAR(50) COMMENT 'æ¼”å‘˜åç§°',
+  actor_img  VARCHAR(200) COMMENT 'æ¼”å‘˜å›¾ç‰‡ä½ç½®'
+) COMMENT 'æ¼”å‘˜è¡¨' ENGINE = INNODB
                 AUTO_INCREMENT = 2
                 CHARACTER SET = utf8
                 COLLATE = utf8_general_ci
@@ -290,16 +290,16 @@ CREATE TABLE cheng_actor_t
 -- ----------------------------
 -- Records of cheng_actor_t
 -- ----------------------------
-INSERT INTO cheng_actor_t(uuid, actor_name, actor_img) value (1, 'Ğìá¿', 'actors/2b98c9d2e6d23a7eff25dcac8b584b0136045.jpg');
-INSERT INTO cheng_actor_t(uuid, actor_name, actor_img) value (2, 'Íõ´«¾ı', 'actors/b782d497577baffb5ed14de52841dcb164365.jpg');
-INSERT INTO cheng_actor_t(uuid, actor_name, actor_img) value (3, 'Ì·×¿', 'actors/acf7db57456cb1aed1a42f7ebffedaa842002.jpg');
-INSERT INTO cheng_actor_t(uuid, actor_name, actor_img) value (4, '»Æ²³', 'actors/c6594ef2705dcaf7d9df857d228b5e1645712.jpg');
-INSERT INTO cheng_actor_t(uuid, actor_name, actor_img) value (5, 'Êæä¿', 'actors/6b32a489467283bb739a2bac3b2b929742175.jpg');
-INSERT INTO cheng_actor_t(uuid, actor_name, actor_img) value (6, 'ÕÅÒÕĞË', 'actors/b738d5e78a1f5c3379d9d42a9b18286f32246.jpeg');
-INSERT INTO cheng_actor_t(uuid, actor_name, actor_img) value (7, 'Ç¿É­', 'actors/7e3067d066c1e285b0cc17bfd5f1b34e108474.jpg');
-INSERT INTO cheng_actor_t(uuid, actor_name, actor_img) value (8, '½ÜÉ­¡¤Ë¹Ì¹É­', 'actors/7ec0c90aec03c7904c1db3af1153162f77864.jpg');
-INSERT INTO cheng_actor_t(uuid, actor_name, actor_img) value (9, 'Àî±ù±ù', 'actors/d2258cd0529950cf5099206519d91d0e51803.jpg');
-INSERT INTO cheng_actor_t(uuid, actor_name, actor_img) value (10, 'ÌÀÄ·¡¤¿ËÂ³Ë¹', 'actors/6afaea1cb4ca2b346e86e265347c78b833970.jpg');
+INSERT INTO cheng_actor_t(uuid, actor_name, actor_img) value (1, 'å¾å³¥', 'actors/2b98c9d2e6d23a7eff25dcac8b584b0136045.jpg');
+INSERT INTO cheng_actor_t(uuid, actor_name, actor_img) value (2, 'ç‹ä¼ å›', 'actors/b782d497577baffb5ed14de52841dcb164365.jpg');
+INSERT INTO cheng_actor_t(uuid, actor_name, actor_img) value (3, 'è°­å“', 'actors/acf7db57456cb1aed1a42f7ebffedaa842002.jpg');
+INSERT INTO cheng_actor_t(uuid, actor_name, actor_img) value (4, 'é»„æ¸¤', 'actors/c6594ef2705dcaf7d9df857d228b5e1645712.jpg');
+INSERT INTO cheng_actor_t(uuid, actor_name, actor_img) value (5, 'èˆ’æ·‡', 'actors/6b32a489467283bb739a2bac3b2b929742175.jpg');
+INSERT INTO cheng_actor_t(uuid, actor_name, actor_img) value (6, 'å¼ è‰ºå…´', 'actors/b738d5e78a1f5c3379d9d42a9b18286f32246.jpeg');
+INSERT INTO cheng_actor_t(uuid, actor_name, actor_img) value (7, 'å¼ºæ£®', 'actors/7e3067d066c1e285b0cc17bfd5f1b34e108474.jpg');
+INSERT INTO cheng_actor_t(uuid, actor_name, actor_img) value (8, 'æ°æ£®Â·æ–¯å¦æ£®', 'actors/7ec0c90aec03c7904c1db3af1153162f77864.jpg');
+INSERT INTO cheng_actor_t(uuid, actor_name, actor_img) value (9, 'æå†°å†°', 'actors/d2258cd0529950cf5099206519d91d0e51803.jpg');
+INSERT INTO cheng_actor_t(uuid, actor_name, actor_img) value (10, 'æ±¤å§†Â·å…‹é²æ–¯', 'actors/6afaea1cb4ca2b346e86e265347c78b833970.jpg');
 
 
 -- ----------------------------
@@ -307,21 +307,21 @@ INSERT INTO cheng_actor_t(uuid, actor_name, actor_img) value (10, 'ÌÀÄ·¡¤¿ËÂ³Ë¹'
 -- ----------------------------
 DROP TABLE IF EXISTS `cheng_film_actor_t`;
 CREATE TABLE cheng_film_actor_t(
-                                UUID INT PRIMARY KEY AUTO_INCREMENT COMMENT 'Ö÷¼ü±àºÅ',
-                                film_id INT COMMENT 'Ó°Æ¬±àºÅ,¶ÔÓ¦cheng_film_t',
-                                actor_id INT COMMENT 'ÑİÔ±±àºÅ,¶ÔÓ¦cheng_actor_t',
-                                role_name VARCHAR(100) COMMENT '½ÇÉ«Ãû³Æ'
-) COMMENT 'Ó°Æ¬ÓëÑİÔ±Ó³Éä±í' ENGINE = INNODB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+                                 UUID INT PRIMARY KEY AUTO_INCREMENT COMMENT 'ä¸»é”®ç¼–å·',
+                                 film_id INT COMMENT 'å½±ç‰‡ç¼–å·,å¯¹åº”cheng_film_t',
+                                 actor_id INT COMMENT 'æ¼”å‘˜ç¼–å·,å¯¹åº”cheng_actor_t',
+                                 role_name VARCHAR(100) COMMENT 'è§’è‰²åç§°'
+) COMMENT 'å½±ç‰‡ä¸æ¼”å‘˜æ˜ å°„è¡¨' ENGINE = INNODB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 
 -- ----------------------------
 -- Records of cheng_film_actor_t
 -- ----------------------------
 INSERT INTO cheng_film_actor_t(UUID,film_id,actor_id,role_name)
-values(1,2,1,'ÑİÔ±1');
+values(1,2,1,'æ¼”å‘˜1');
 INSERT INTO cheng_film_actor_t(UUID,film_id,actor_id,role_name)
-values(2,2,2,'ÑİÔ±2');
+values(2,2,2,'æ¼”å‘˜2');
 INSERT INTO cheng_film_actor_t(UUID,film_id,actor_id,role_name)
-values(3,2,3,'ÑİÔ±3');
+values(3,2,3,'æ¼”å‘˜3');
 INSERT INTO cheng_film_actor_t(UUID,film_id,actor_id,role_name)
-values(4,2,4,'ÑİÔ±4');
+values(4,2,4,'æ¼”å‘˜4');

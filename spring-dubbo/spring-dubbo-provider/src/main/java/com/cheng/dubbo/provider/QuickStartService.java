@@ -1,13 +1,13 @@
 package com.cheng.dubbo.provider;
 
 import com.cheng.dubbo.ServiceAPI;
-import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author cheng
  *         2018/12/31 23:11
  */
-@Service
 public class QuickStartService implements ServiceAPI {
 
     @Override
@@ -28,5 +28,10 @@ public class QuickStartService implements ServiceAPI {
         Thread.sleep(2000);
 
         return "quick-start-provider-message2: " + message;
+    }
+
+    @Override
+    public List<String> mergeTest(String message) {
+        return null;
     }
 }
