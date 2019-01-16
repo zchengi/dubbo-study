@@ -11,8 +11,8 @@ import com.stylefeng.guns.api.cinema.vo.OrderQueryVO;
 import com.stylefeng.guns.api.order.OrderServiceAPI;
 import com.stylefeng.guns.api.order.vo.OrderVO;
 import com.stylefeng.guns.core.util.UUIDUtil;
-import com.stylefeng.guns.rest.common.persistence.dao.ChengOrderTMapper;
-import com.stylefeng.guns.rest.common.persistence.model.ChengOrderT;
+import com.stylefeng.guns.rest.common.persistence.dao.ChengOrder2017TMapper;
+import com.stylefeng.guns.rest.common.persistence.model.ChengOrder2017T;
 import com.stylefeng.guns.rest.common.util.FTPUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,11 +29,11 @@ import java.util.List;
  */
 @Slf4j
 @Component
-@Service(interfaceClass = OrderServiceAPI.class,group = "default")
-public class DefaultOrderServiceImpl implements OrderServiceAPI {
+@Service(interfaceClass = OrderServiceAPI.class,group = "order2017")
+public class OrderServiceImpl2017 implements OrderServiceAPI {
 
     @Autowired
-    private ChengOrderTMapper chengOrderTMapper;
+    private ChengOrder2017TMapper chengOrder2017TMapper;
 
     @Reference(interfaceClass = CinemaServiceAPI.class, check = false)
     private CinemaServiceAPI cinemaServiceAPI;
@@ -45,7 +45,7 @@ public class DefaultOrderServiceImpl implements OrderServiceAPI {
     public boolean isTrueSeats(String fieldId, String seats) {
 
         // 根据 FieldId 找到对应的座位位置图
-        String seatPath = chengOrderTMapper.getSeatsByFieldId(fieldId);
+        String seatPath = chengOrder2017TMapper.getSeatsByFieldId(fieldId);
 
         // 读取位置图，判断 seats 是否售出
         String fileStrByAddress = ftpUtil.getFileStrByAddress(seatPath);
@@ -75,15 +75,15 @@ public class DefaultOrderServiceImpl implements OrderServiceAPI {
     @Override
     public boolean isNotSoldSeats(String fieldId, String seats) {
 
-        EntityWrapper<ChengOrderT> entityWrapper = new EntityWrapper<>();
+        EntityWrapper<ChengOrder2017T> entityWrapper = new EntityWrapper<>();
         entityWrapper.eq("field_id", fieldId);
 
-        List<ChengOrderT> list = chengOrderTMapper.selectList(entityWrapper);
+        List<ChengOrder2017T> list = chengOrder2017TMapper.selectList(entityWrapper);
         String[] seatArray = seats.split(",");
 
         // 有一个匹配到，直接返回失败
-        for (ChengOrderT chengOrderT : list) {
-            String[] ids = chengOrderT.getSeatsIds().split(",");
+        for (ChengOrder2017T chengOrder2017T : list) {
+            String[] ids = chengOrder2017T.getSeatsIds().split(",");
             for (String id : ids) {
                 for (String seat : seatArray) {
                     if (id.equalsIgnoreCase(seat)) {
@@ -115,21 +115,21 @@ public class DefaultOrderServiceImpl implements OrderServiceAPI {
         int solds = soldSeats.split(",").length;
         double totalPrice = getTotalPrice(solds, filmPrice);
 
-        ChengOrderT chengOrderT = new ChengOrderT();
-        chengOrderT.setUuid(uuid);
-        chengOrderT.setSeatsName(seatsName);
-        chengOrderT.setSeatsIds(soldSeats);
-        chengOrderT.setOrderUser(userId);
-        chengOrderT.setOrderPrice(totalPrice);
-        chengOrderT.setFilmPrice(filmPrice);
-        chengOrderT.setFilmId(filmId);
-        chengOrderT.setFieldId(fieldId);
-        chengOrderT.setCinemaId(cinemaId);
+        ChengOrder2017T chengOrder2017T = new ChengOrder2017T();
+        chengOrder2017T.setUuid(uuid);
+        chengOrder2017T.setSeatsName(seatsName);
+        chengOrder2017T.setSeatsIds(soldSeats);
+        chengOrder2017T.setOrderUser(userId);
+        chengOrder2017T.setOrderPrice(totalPrice);
+        chengOrder2017T.setFilmPrice(filmPrice);
+        chengOrder2017T.setFilmId(filmId);
+        chengOrder2017T.setFieldId(fieldId);
+        chengOrder2017T.setCinemaId(cinemaId);
 
-        Integer insert = chengOrderTMapper.insert(chengOrderT);
+        Integer insert = chengOrder2017TMapper.insert(chengOrder2017T);
         if (insert > 0) {
             // 返回查询结果
-            OrderVO orderVO = chengOrderTMapper.getOrderInfoById(uuid);
+            OrderVO orderVO = chengOrder2017TMapper.getOrderInfoById(uuid);
             if (orderVO == null || orderVO.getOrderId() == null) {
                 log.error("订单信息查询失败，订单编号为: {}", uuid);
             } else {
@@ -152,15 +152,15 @@ public class DefaultOrderServiceImpl implements OrderServiceAPI {
             return null;
         } else {
 
-            List<OrderVO> ordersByUserId = chengOrderTMapper.getOrdersByUserId(userId, page);
+            List<OrderVO> ordersByUserId = chengOrder2017TMapper.getOrdersByUserId(userId, page);
             if (ordersByUserId == null || ordersByUserId.size() == 0) {
                 result.setTotal(0);
                 result.setRecords(new ArrayList<>());
             } else {
                 // 获取订单总数
-                EntityWrapper<ChengOrderT> entityWrapper = new EntityWrapper<>();
+                EntityWrapper<ChengOrder2017T> entityWrapper = new EntityWrapper<>();
                 entityWrapper.eq("order_user", userId);
-                Integer count = chengOrderTMapper.selectCount(entityWrapper);
+                Integer count = chengOrder2017TMapper.selectCount(entityWrapper);
                 result.setTotal(count);
                 result.setRecords(ordersByUserId);
             }
@@ -179,7 +179,7 @@ public class DefaultOrderServiceImpl implements OrderServiceAPI {
             log.error("查询已售座位出错，未输入场次编号");
             return "";
         } else {
-            return chengOrderTMapper.getSoldSeatsByFieldId(fieldId);
+            return chengOrder2017TMapper.getSoldSeatsByFieldId(fieldId);
         }
     }
 

@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author cheng
  *         2019/1/14 17:25
@@ -21,8 +24,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/order")
 public class OrderController {
 
-    @Reference(interfaceClass = OrderServiceAPI.class, check = false)
+    @Reference(interfaceClass = OrderServiceAPI.class,
+            check = false,
+            group = "order2018")
     private OrderServiceAPI orderServiceAPI;
+
+    @Reference(interfaceClass = OrderServiceAPI.class,
+            check = false,
+            group = "order2017")
+    private OrderServiceAPI orderServiceAPI2017;
 
     /**
      * 购票
@@ -72,9 +82,18 @@ public class OrderController {
         // 获取当前用户订单
         Page<OrderVO> page = new Page<>(nowPage, pageSize);
         if (userId != null && userId.trim().length() > 0) {
-            Page<OrderVO> result = orderServiceAPI.getOrderByUserId(Integer.valueOf(userId), page);
 
-            return ResponseVO.success("", result.getRecords(), nowPage, (int) result.getPages());
+            Page<OrderVO> result = orderServiceAPI.getOrderByUserId(Integer.valueOf(userId), page);
+            Page<OrderVO> result2017 = orderServiceAPI2017.getOrderByUserId(Integer.valueOf(userId), page);
+
+            // 合并结果
+            int totalPages = (int) (result.getPages() + result2017.getPages());
+            // 2017 + 2018 订单总数
+            List<OrderVO> orderVOList = new ArrayList<>();
+            orderVOList.addAll(result.getRecords());
+            orderVOList.addAll(result2017.getRecords());
+
+            return ResponseVO.success("", orderVOList, nowPage, totalPages);
         } else {
             return ResponseVO.serviceFail("用户未登录");
         }
