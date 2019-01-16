@@ -2,6 +2,8 @@ package com.stylefeng.guns.rest.modular.order;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.baomidou.mybatisplus.plugins.Page;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import com.stylefeng.guns.api.order.OrderServiceAPI;
 import com.stylefeng.guns.api.order.vo.OrderVO;
 import com.stylefeng.guns.core.util.TokenBucket;
@@ -25,6 +27,8 @@ import java.util.List;
 @RequestMapping("/order")
 public class OrderController {
 
+    private static TokenBucket tokenBucket = new TokenBucket();
+
     @Reference(interfaceClass = OrderServiceAPI.class,
             check = false,
             group = "order2018")
@@ -37,12 +41,26 @@ public class OrderController {
 
     /**
      * 购票
+     * <p>
+     * Hystrix: 信号量隔离、线程池隔离、线程切换
      */
     @PostMapping("buyTickets")
+    @HystrixCommand(fallbackMethod = "error", commandProperties = {
+            @HystrixProperty(name = "execution.isolation.strategy", value = "THREAD"),
+            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "4000"),
+            @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "10"),
+            @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "50")},
+            threadPoolProperties = {
+                    @HystrixProperty(name = "coreSize", value = "1"),
+                    @HystrixProperty(name = "maxQueueSize", value = "10"),
+                    @HystrixProperty(name = "keepAliveTimeMinutes", value = "1000"),
+                    @HystrixProperty(name = "queueSizeRejectionThreshold", value = "8"),
+                    @HystrixProperty(name = "metrics.rollingStats.numBuckets", value = "12"),
+                    @HystrixProperty(name = "metrics.rollingStats.timeInMilliseconds", value = "1500")})
     public ResponseVO buyTickets(Integer fieldId, String soldSeats, String seatsName) {
 
         try {
-            if (TokenBucket.getToken()) {
+            if (tokenBucket.getToken()) {
                 // 验证是否售出票
                 boolean isTrue = orderServiceAPI.isTrueSeats(String.valueOf(fieldId), soldSeats);
 
@@ -101,5 +119,9 @@ public class OrderController {
         } else {
             return ResponseVO.serviceFail("用户未登录");
         }
+    }
+
+    public ResponseVO error(Integer fieldId, String soldSeats, String seatsName) {
+        return ResponseVO.serviceFail("抱歉，下单的人太多了，请稍后重试");
     }
 }

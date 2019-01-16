@@ -13,24 +13,24 @@ public class TokenBucket {
     /**
      * 容量
      */
-    private static int bucketNums = 100;
+    private int bucketNums = 100;
 
     /**
      * 流速
      */
-    private static int rate = 1;
+    private int rate = 1;
 
     /**
      * 令牌量
      */
-    private static int nowTokens;
+    private int nowTokens;
 
     /**
      * 时间
      */
-    private static long timestamp = getNowTime();
+    private long timestamp = getNowTime();
 
-    public static boolean getToken() {
+    public boolean getToken() {
 
         // 记录获取令牌时间
         long nowTime = getNowTime();
@@ -54,7 +54,7 @@ public class TokenBucket {
         }
     }
 
-    private static int min(int tokens) {
+    private int min(int tokens) {
 
         if (bucketNums > tokens) {
             return tokens;
@@ -63,7 +63,7 @@ public class TokenBucket {
         }
     }
 
-    private static long getNowTime() {
+    private long getNowTime() {
         return System.currentTimeMillis();
     }
 
@@ -75,7 +75,7 @@ public class TokenBucket {
                 Thread.sleep(500);
             }
 
-            System.out.println("第 " + i + " 次请求结果: " + getToken());
+            System.out.println("第 " + i + " 次请求结果: " + tokenBucket.getToken());
         }
     }
 }
