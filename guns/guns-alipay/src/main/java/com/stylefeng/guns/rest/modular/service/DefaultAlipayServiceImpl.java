@@ -97,11 +97,15 @@ public class DefaultAlipayServiceImpl implements AlipayServiceAPI {
     public AlipayResultVO getOrderStatus(String orderId) {
 
         // 测试 mock 不成功
-        try {
+        /*try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
+        }*/
+
+        // 查询当前是否有用户登录
+//        String userId = RpcContext.getContext().getAttachment("userId");
+//        log.info("DefaultAlipayServiceImpl - getOrderStatus - userId: {}", userId);
 
         // 获取订单支付状态
         boolean isSuccess = trade_query(orderId);

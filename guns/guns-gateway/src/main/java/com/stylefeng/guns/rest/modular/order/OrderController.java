@@ -154,6 +154,9 @@ public class OrderController {
             return ResponseVO.serviceFail("用户未登录");
         }
 
+        // 将当前用户信息传递给后端
+//        RpcContext.getContext().setAttachment("userId", userId);
+
         // 判断是否支付超时
         if (tryNums >= 4) {
             return ResponseVO.serviceFail("订单支付失败，请稍后重试");

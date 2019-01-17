@@ -29,7 +29,7 @@ import java.util.List;
  */
 @Slf4j
 @Component
-@Service(interfaceClass = OrderServiceAPI.class,group = "default")
+@Service(interfaceClass = OrderServiceAPI.class, group = "default")
 public class DefaultOrderServiceImpl implements OrderServiceAPI {
 
     @Autowired
@@ -201,7 +201,6 @@ public class DefaultOrderServiceImpl implements OrderServiceAPI {
 
     @Override
     public boolean payFail(String orderId) {
-
 
         ChengOrderT chengOrderT = new ChengOrderT();
         chengOrderT.setUuid(orderId);
