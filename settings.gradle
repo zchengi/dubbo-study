@@ -4,6 +4,7 @@ include 'spring-dubbo-provider'
 include 'spring-dubbo-consumer'
 include 'springboot-dubbo-provider'
 include 'springboot-dubbo-consumer'
+include 'alipay-demo'
 
 project(':spring-dubbo-provider').projectDir = "$rootDir/spring-dubbo/spring-dubbo-provider" as File
 project(':spring-dubbo-consumer').projectDir = "$rootDir/spring-dubbo/spring-dubbo-consumer" as File

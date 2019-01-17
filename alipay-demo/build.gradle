@@ -1,0 +1,25 @@
+group 'com.cheng'
+version '1.0-SNAPSHOT'
+
+ext {
+    alipayVersion = '3.0.0'
+    commonsLangVersion = '2.6'
+    commonsConfigurationVersion = '1.10'
+    commonsCodecVersion = '1.11'
+    googleCoreVersion = '3.2.1'
+    hamcrestCoreVersion = '1.3'
+    gsonVersion = '2.8.5'
+}
+
+dependencies {
+    compile("com.alipay.sdk:alipay-sdk-java:${alipayVersion}") /*{
+        exclude group: "commons-logging", module: "commons-logging"
+    }*/
+    compile "commons-lang:commons-lang:${commonsLangVersion}"
+    compile("commons-configuration:commons-configuration:${commonsConfigurationVersion}")
+    compile "commons-codec:commons-codec:${commonsCodecVersion}"
+    compile "com.google.zxing:core:${googleCoreVersion}"
+    compile "com.google.code.gson:gson:${gsonVersion}"
+
+    testCompile "org.hamcrest:hamcrest-core:${hamcrestCoreVersion}"
+}
