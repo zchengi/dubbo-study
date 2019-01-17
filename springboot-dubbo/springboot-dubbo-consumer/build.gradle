@@ -20,15 +20,35 @@ apply plugin: 'io.spring.dependency-management'
 ext {
     zkclientVersion = '0.10'
     dubboVersion = '2.0.0'
+    druidVersion = '1.1.12'
+    mysqlVersion = '5.1.10'
+    quartzVersion = '2.2.1'
+    guavaVersion = '23.0'
+    kryoShadedVersion = '4.0.2'
+    commonsLang3Version = '3.8.1'
+    fastjsonVersion = '1.2.51'
 }
 
 dependencies {
 
     compile "com.101tec:zkclient:${zkclientVersion}"
     compile "com.alibaba.spring.boot:dubbo-spring-boot-starter:${dubboVersion}"
+    compile project(":springboot-dubbo-api")
+    compile "com.alibaba:druid:${druidVersion}"
+    compile "mysql:mysql-connector-java:${mysqlVersion}"
+    compile("org.quartz-scheduler:quartz:${quartzVersion}") {
+        exclude group: 'org.slf4j', module: 'slf4j-api'
+    }
+    compile "com.google.guava:guava:${guavaVersion}"
+    compile "com.esotericsoftware:kryo-shaded:${kryoShadedVersion}"
+    compile "org.apache.commons:commons-lang3:${commonsLang3Version}"
+    compile "com.alibaba:fastjson:${fastjsonVersion}"
 
-    implementation('org.springframework.boot:spring-boot-starter-web')
     implementation('org.springframework.boot:spring-boot-starter')
+    implementation('org.springframework.boot:spring-boot-starter-web')
+    implementation('org.springframework.boot:spring-boot-starter-aop')
+    implementation('org.springframework.boot:spring-boot-starter-jdbc')
+    implementation('org.springframework:spring-context-support')
 
     testImplementation('org.springframework.boot:spring-boot-starter-test')
 }

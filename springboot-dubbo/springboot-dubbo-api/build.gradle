@@ -1,0 +1,29 @@
+group 'com.cheng'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    ext {
+        springBootVersion = '2.1.1.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+dependencies {
+
+    compile fileTree(dir: "/src/main/resources/lib/", include: ['*.jar'])
+//    compile files('/src/main/resources/lib//tcc-transaction-api-1.2.4.23.jar')
+
+    implementation('org.springframework.boot:spring-boot-starter-web')
+    implementation('org.springframework.boot:spring-boot-starter')
+
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+}
