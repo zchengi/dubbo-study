@@ -25,7 +25,6 @@ public class StubConsumerClient {
 
             // 测试 负载均衡
             System.out.println(serviceApi.sendMessage(message));
-
         }
     }
 }

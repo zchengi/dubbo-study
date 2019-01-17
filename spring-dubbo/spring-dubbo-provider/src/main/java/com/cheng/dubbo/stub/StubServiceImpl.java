@@ -15,6 +15,12 @@ public class StubServiceImpl implements ServiceAPI {
 
         System.out.println("stub sendMessage: " + message);
 
+        try {
+            Thread.sleep(4000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         return "stub: " + message;
     }
 

@@ -37,7 +37,8 @@ import java.util.List;
  */
 @Slf4j
 @Component
-@Service(interfaceClass = AlipayServiceAPI.class)
+@Service(interfaceClass = AlipayServiceAPI.class,
+        mock = "com.stylefeng.guns.api.alipay.AlipayServiceMock")
 public class DefaultAlipayServiceImpl implements AlipayServiceAPI {
 
     @Reference(interfaceClass = OrderServiceAPI.class, check = false, group = "order2018")
@@ -95,6 +96,13 @@ public class DefaultAlipayServiceImpl implements AlipayServiceAPI {
     @Override
     public AlipayResultVO getOrderStatus(String orderId) {
 
+        // 测试 mock 不成功
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         // 获取订单支付状态
         boolean isSuccess = trade_query(orderId);
         if (isSuccess) {
@@ -109,7 +117,7 @@ public class DefaultAlipayServiceImpl implements AlipayServiceAPI {
     }
 
     // 测试当面付2.0生成支付二维码
-    public String trade_precreate(String orderId) {
+    private String trade_precreate(String orderId) {
 
         String filePath = "";
 
@@ -210,7 +218,7 @@ public class DefaultAlipayServiceImpl implements AlipayServiceAPI {
     }
 
     // 测试当面付2.0查询订单
-    public boolean trade_query(String orderId) {
+    private boolean trade_query(String orderId) {
 
         boolean flag = false;
 

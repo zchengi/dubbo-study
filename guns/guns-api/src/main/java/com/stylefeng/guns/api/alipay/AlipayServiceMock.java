@@ -2,6 +2,7 @@ package com.stylefeng.guns.api.alipay;
 
 import com.stylefeng.guns.api.alipay.vo.AlipayInfoVO;
 import com.stylefeng.guns.api.alipay.vo.AlipayResultVO;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 业务降级方法
@@ -9,7 +10,8 @@ import com.stylefeng.guns.api.alipay.vo.AlipayResultVO;
  * @author cheng
  *         2019/1/17 14:17
  */
-public class AlipayServiceMock implements AlipayServiceAPI{
+@Slf4j
+public class AlipayServiceMock implements AlipayServiceAPI {
 
     @Override
     public AlipayInfoVO getQRCode(String orderId) {
@@ -22,8 +24,8 @@ public class AlipayServiceMock implements AlipayServiceAPI{
         AlipayResultVO alipayResultVO = new AlipayResultVO();
         alipayResultVO.setOrderId(orderId);
         alipayResultVO.setOrderStatus(0);
-        alipayResultVO.setOrderMsg("未支付成功");
-
+        alipayResultVO.setOrderMsg("支付失败");
+        log.error("支付失败 mock error");
         return alipayResultVO;
     }
 }
