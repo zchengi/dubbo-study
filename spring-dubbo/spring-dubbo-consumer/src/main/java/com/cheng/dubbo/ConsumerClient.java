@@ -11,7 +11,7 @@ import java.util.concurrent.Future;
  * @author cheng
  *         2018/12/31 23:39
  */
-public class Consumer {
+public class ConsumerClient {
     public static void main(String[] args) throws InterruptedException, ExecutionException {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext-dubbo-consumer.xml");
 

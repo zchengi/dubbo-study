@@ -11,21 +11,29 @@ import java.util.List;
 public class QuickStartService implements ServiceAPI {
 
     @Override
-    public String sendMessage(String message) throws InterruptedException {
+    public String sendMessage(String message)  {
 
         System.out.println("sendMessage: " + message);
 
-        Thread.sleep(1000);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         return "quick-start-provider-message: " + message;
     }
 
     @Override
-    public String sendMessage2(String message) throws InterruptedException {
+    public String sendMessage2(String message)  {
 
         System.out.println("sendMessage2: " + message);
 
-        Thread.sleep(2000);
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         return "quick-start-provider-message2: " + message;
     }

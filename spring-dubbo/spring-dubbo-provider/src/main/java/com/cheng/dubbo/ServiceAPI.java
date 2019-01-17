@@ -8,9 +8,9 @@ import java.util.List;
  */
 public interface ServiceAPI {
 
-    String sendMessage(String message) throws InterruptedException;
+    String sendMessage(String message);
 
-    String sendMessage2(String message) throws InterruptedException;
+    String sendMessage2(String message);
 
     List<String> mergeTest(String message);
 }
