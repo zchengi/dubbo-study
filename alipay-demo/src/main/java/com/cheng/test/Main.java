@@ -437,7 +437,7 @@ public class Main {
                 dumpResponse(response);
 
                 // 需要修改为运行机器上的路径
-                String filePath = String.format("D:/Appserv/ftp/qrcode/qr-%s.png",
+                String filePath = String.format("D:/Appserv/ftp/tmp/qr-%s.png",
                         response.getOutTradeNo());
                 log.info("filePath:" + filePath);
                 ZxingUtils.getQRCodeImge(response.getQrCode(), 256, filePath);

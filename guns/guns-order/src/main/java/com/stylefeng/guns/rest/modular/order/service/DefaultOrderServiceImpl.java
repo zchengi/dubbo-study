@@ -183,6 +183,34 @@ public class DefaultOrderServiceImpl implements OrderServiceAPI {
         }
     }
 
+    @Override
+    public OrderVO getOrderInfoById(String orderId) {
+        return chengOrderTMapper.getOrderInfoById(orderId);
+    }
+
+    @Override
+    public boolean paySuccess(String orderId) {
+
+        ChengOrderT chengOrderT = new ChengOrderT();
+        chengOrderT.setUuid(orderId);
+        chengOrderT.setOrderStatus(1);
+
+        Integer integer = chengOrderTMapper.updateById(chengOrderT);
+        return integer >= 1;
+    }
+
+    @Override
+    public boolean payFail(String orderId) {
+
+
+        ChengOrderT chengOrderT = new ChengOrderT();
+        chengOrderT.setUuid(orderId);
+        chengOrderT.setOrderStatus(2);
+
+        Integer integer = chengOrderTMapper.updateById(chengOrderT);
+        return integer >= 1;
+    }
+
     private double getTotalPrice(int solds, double filmPrice) {
 
         BigDecimal soldsDeci = new BigDecimal(solds);

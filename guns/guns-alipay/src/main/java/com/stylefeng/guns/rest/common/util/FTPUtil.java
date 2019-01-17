@@ -2,13 +2,12 @@ package com.stylefeng.guns.rest.common.util;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 
 /**
  * @author cheng
@@ -24,18 +23,48 @@ public class FTPUtil {
     private Integer port;
     private String username;
     private String password;
+    private String uploadPath;
 
     private FTPClient ftpClient;
 
-    private void initFTPClient() {
+    /**
+     * 文件上传
+     */
+    public boolean uploadFile(String filmName, File file) {
+
+        FileInputStream fileInputStream = null;
         try {
-            ftpClient = new FTPClient();
+            fileInputStream = new FileInputStream(file);
+
+            // FTP 初始化
+            initFTPClient();
+
+            // 设置 FTP 关键参数
             ftpClient.setControlEncoding("UTF-8");
-            ftpClient.connect(hostname, port);
-            ftpClient.login(username, password);
+            ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
+            ftpClient.enterLocalPassiveMode();
+
+            // 修改 ftpClient 的工作空间
+            ftpClient.changeWorkingDirectory(this.getUploadPath());
+
+            // 上传文件
+            ftpClient.storeFile(filmName, fileInputStream);
+
+            return true;
         } catch (Exception e) {
-            log.error("FTP 初始化失败", e);
+            log.error("文件上传失败");
+        } finally {
+            try {
+                if (fileInputStream != null) {
+                    fileInputStream.close();
+                }
+                ftpClient.logout();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
+
+        return false;
     }
 
     /**
@@ -77,6 +106,17 @@ public class FTPUtil {
         }
 
         return null;
+    }
+
+    private void initFTPClient() {
+        try {
+            ftpClient = new FTPClient();
+            ftpClient.setControlEncoding("UTF-8");
+            ftpClient.connect(hostname, port);
+            ftpClient.login(username, password);
+        } catch (Exception e) {
+            log.error("FTP 初始化失败", e);
+        }
     }
 
     public static void main(String[] args) {

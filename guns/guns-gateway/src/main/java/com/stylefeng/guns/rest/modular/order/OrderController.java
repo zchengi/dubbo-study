@@ -4,12 +4,17 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
+import com.stylefeng.guns.api.alipay.AlipayServiceAPI;
+import com.stylefeng.guns.api.alipay.vo.AlipayInfoVO;
+import com.stylefeng.guns.api.alipay.vo.AlipayResultVO;
 import com.stylefeng.guns.api.order.OrderServiceAPI;
 import com.stylefeng.guns.api.order.vo.OrderVO;
 import com.stylefeng.guns.core.util.TokenBucket;
+import com.stylefeng.guns.core.util.ToolUtil;
 import com.stylefeng.guns.rest.common.CurrentUser;
 import com.stylefeng.guns.rest.modular.vo.ResponseVO;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,6 +33,7 @@ import java.util.List;
 public class OrderController {
 
     private static TokenBucket tokenBucket = new TokenBucket();
+    private static final String IMG_PRE = "http://www.chengix.com";
 
     @Reference(interfaceClass = OrderServiceAPI.class,
             check = false,
@@ -39,12 +45,15 @@ public class OrderController {
             group = "order2017")
     private OrderServiceAPI orderServiceAPI2017;
 
+    @Reference(interfaceClass = AlipayServiceAPI.class, check = false)
+    private AlipayServiceAPI alipayServiceAPI;
+
     /**
      * 购票
      * <p>
      * Hystrix: 信号量隔离、线程池隔离、线程切换
      */
-    @PostMapping("buyTickets")
+    @PostMapping("/buyTickets")
     @HystrixCommand(fallbackMethod = "error", commandProperties = {
             @HystrixProperty(name = "execution.isolation.strategy", value = "THREAD"),
             @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "4000"),
@@ -94,7 +103,7 @@ public class OrderController {
         }
     }
 
-    @PostMapping("getOrderInfo")
+    @PostMapping("/getOrderInfo")
     public ResponseVO getOrderInfo(@RequestParam(required = false, defaultValue = "1") Integer nowPage,
                                    @RequestParam(required = false, defaultValue = "5") Integer pageSize) {
 
@@ -118,6 +127,47 @@ public class OrderController {
             return ResponseVO.success("", orderVOList, nowPage, totalPages);
         } else {
             return ResponseVO.serviceFail("用户未登录");
+        }
+    }
+
+    @PostMapping("/getPayInfo")
+    public ResponseVO getPayInfo(@RequestParam("orderId") String orderId) {
+
+        // 获取当前用户信息
+        String userId = CurrentUser.getCurrentUser();
+        if (StringUtils.isBlank(userId)) {
+            return ResponseVO.serviceFail("用户未登录");
+        }
+
+        // 二维码生成
+        AlipayInfoVO alipayInfoVO = alipayServiceAPI.getQRCode(orderId);
+        return ResponseVO.success(IMG_PRE, alipayInfoVO);
+    }
+
+    @PostMapping("/getPayResult")
+    public ResponseVO getPayResult(@RequestParam("orderId") String orderId,
+                                   @RequestParam(value = "tryNums", required = false, defaultValue = "1") Integer tryNums) {
+
+        // 获取当前用户信息
+        String userId = CurrentUser.getCurrentUser();
+        if (StringUtils.isBlank(userId)) {
+            return ResponseVO.serviceFail("用户未登录");
+        }
+
+        // 判断是否支付超时
+        if (tryNums >= 4) {
+            return ResponseVO.serviceFail("订单支付失败，请稍后重试");
+        } else {
+            AlipayResultVO alipayResultVO = alipayServiceAPI.getOrderStatus(orderId);
+            if (alipayResultVO == null || ToolUtil.isEmpty(alipayResultVO)) {
+                AlipayResultVO serviceFailVO = new AlipayResultVO();
+                serviceFailVO.setOrderId(orderId);
+                serviceFailVO.setOrderStatus(0);
+                serviceFailVO.setOrderMsg("支付失败");
+                return ResponseVO.success(serviceFailVO);
+            }
+
+            return ResponseVO.success(alipayResultVO);
         }
     }
 

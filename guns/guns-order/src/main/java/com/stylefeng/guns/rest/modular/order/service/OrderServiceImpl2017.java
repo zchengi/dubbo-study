@@ -29,7 +29,7 @@ import java.util.List;
  */
 @Slf4j
 @Component
-@Service(interfaceClass = OrderServiceAPI.class,group = "order2017")
+@Service(interfaceClass = OrderServiceAPI.class, group = "order2017")
 public class OrderServiceImpl2017 implements OrderServiceAPI {
 
     @Autowired
@@ -183,6 +183,32 @@ public class OrderServiceImpl2017 implements OrderServiceAPI {
         }
     }
 
+    @Override
+    public OrderVO getOrderInfoById(String orderId) {
+        return chengOrder2017TMapper.getOrderInfoById(orderId);
+    }
+
+    @Override
+    public boolean paySuccess(String orderId) {
+
+        ChengOrder2017T chengOrderT = new ChengOrder2017T();
+        chengOrderT.setUuid(orderId);
+        chengOrderT.setOrderStatus(1);
+
+        Integer integer = chengOrder2017TMapper.updateById(chengOrderT);
+        return integer >= 1;
+    }
+
+    @Override
+    public boolean payFail(String orderId) {
+
+        ChengOrder2017T chengOrderT = new ChengOrder2017T();
+        chengOrderT.setUuid(orderId);
+        chengOrderT.setOrderStatus(2);
+
+        Integer integer = chengOrder2017TMapper.updateById(chengOrderT);
+        return integer >= 1;
+    }
     private double getTotalPrice(int solds, double filmPrice) {
 
         BigDecimal soldsDeci = new BigDecimal(solds);

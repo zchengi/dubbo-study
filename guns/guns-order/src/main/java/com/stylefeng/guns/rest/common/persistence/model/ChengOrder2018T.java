@@ -2,6 +2,7 @@ package com.stylefeng.guns.rest.common.persistence.model;
 
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 
 import java.io.Serializable;
@@ -23,7 +24,7 @@ public class ChengOrder2018T extends Model<ChengOrder2018T> {
     /**
      * 主键编号
      */
-    @TableField("UUID")
+    @TableId("UUID")
     private String uuid;
     /**
      * 影院编号
