@@ -14,12 +14,12 @@ public class QuickStartService implements ServiceAPI {
     public String sendMessage(String message)  {
 
         System.out.println("sendMessage: " + message);
-
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//
+//        try {
+//            Thread.sleep(1000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
 
         return "quick-start-provider-message: " + message;
     }
@@ -28,12 +28,12 @@ public class QuickStartService implements ServiceAPI {
     public String sendMessage2(String message)  {
 
         System.out.println("sendMessage2: " + message);
-
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//
+//        try {
+//            Thread.sleep(2000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
 
         return "quick-start-provider-message2: " + message;
     }

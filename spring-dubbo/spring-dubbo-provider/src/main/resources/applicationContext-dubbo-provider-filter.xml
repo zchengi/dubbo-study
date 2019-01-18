@@ -8,10 +8,13 @@
 		 http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
     <!-- 提供方应用信息，用于计算依赖关系 -->
-    <dubbo:application name="loadbalance03"/>
+    <dubbo:application name="loadbalance01"/>
 
     <!-- 用 dubbo 协议在 20880 端口暴露服务 -->
-    <dubbo:protocol name="dubbo" port="20883"/>
+    <dubbo:protocol name="dubbo" port="20881"/>
+
+    <!-- dubbo-filter -->
+    <dubbo:provider filter="MyFilterExt" />
 
     <!-- 使用 zookeeper 进行注册中心化 -->
     <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
