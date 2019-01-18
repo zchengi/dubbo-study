@@ -12,13 +12,13 @@ jwt:
 
 # ftp://192.168.0.100:21
 ftp:
-  hostname: 192.168.0.100
+  hostname: 127.0.0.1
   port: 21
-  username: ftp
-  password: ftp
+  username: ftpClient
+  password: ftpClient
 
 server:
-  port: 8086 # 项目端口
+  port: 8974 # 项目端口
 
 mybatis-plus:
   mapper-locations: classpath*:com/stylefeng/guns/rest/**/mapping/*.xml
@@ -45,12 +45,12 @@ spring:
       port: 20884
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/guns_rest?autoReconnect=true&useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8
-    username: root
-    password: zy159357
+    username: cheng
+    password: zy159357+
     filters: log4j,wall,mergeStat
 
 logging:
   level.root: info
   level.com.stylefeng: debug
-#  path: logs/
-#  file: guns-gateway.log
+  path: logs/
+  file: gensokyo-order.log
