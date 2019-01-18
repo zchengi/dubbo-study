@@ -9,6 +9,9 @@ ext {
     commonsLoggingVersion = '1.2'
     javassistVersion = '3.21.0-GA'
     springVersion = '4.3.20.RELEASE'
+    braveVersion = '5.5.0'
+    zipkinVersion = '2.7.9'
+    curatorVersion = '4.0.1'
 }
 
 dependencies {
@@ -19,6 +22,15 @@ dependencies {
     compile "io.netty:netty-all:${nettyVersion}"
     compile "commons-logging:commons-logging:${commonsLoggingVersion}"
     compile "org.javassist:javassist:${javassistVersion}"
+
+    // 全链路监控
+    compile "io.zipkin.brave:brave-spring-beans:${braveVersion}"
+    compile "io.zipkin.brave:brave-context-slf4j:${braveVersion}"
+    compile "io.zipkin.brave:brave-instrumentation-dubbo-rpc:${braveVersion}"
+    compile "io.zipkin.reporter2:zipkin-sender-okhttp3:${zipkinVersion}"
+    compile("org.apache.curator:curator-framework:${curatorVersion}") {
+        exclude group: 'org.apache.zookeeper', module: 'zookeeper'
+    }
 
     compile "org.springframework:spring-context:${springVersion}"
     compile "org.springframework:spring-context-support:${springVersion}"

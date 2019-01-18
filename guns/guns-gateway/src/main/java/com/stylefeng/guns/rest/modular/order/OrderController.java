@@ -37,15 +37,17 @@ public class OrderController {
 
     @Reference(interfaceClass = OrderServiceAPI.class,
             check = false,
-            group = "order2018")
+            group = "order2018",
+            filter = "tracing")
     private OrderServiceAPI orderServiceAPI;
 
     @Reference(interfaceClass = OrderServiceAPI.class,
             check = false,
-            group = "order2017")
+            group = "order2017",
+            filter = "tracing")
     private OrderServiceAPI orderServiceAPI2017;
 
-    @Reference(interfaceClass = AlipayServiceAPI.class, check = false)
+    @Reference(interfaceClass = AlipayServiceAPI.class, check = false, filter = "tracing")
     private AlipayServiceAPI alipayServiceAPI;
 
     /**

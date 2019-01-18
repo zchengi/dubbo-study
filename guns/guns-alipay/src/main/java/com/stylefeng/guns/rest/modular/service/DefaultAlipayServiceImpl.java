@@ -38,7 +38,7 @@ import java.util.List;
 @Slf4j
 @Component
 @Service(interfaceClass = AlipayServiceAPI.class,
-        mock = "com.stylefeng.guns.api.alipay.AlipayServiceMock")
+        mock = "com.stylefeng.guns.api.alipay.AlipayServiceMock", filter = "tracing")
 public class DefaultAlipayServiceImpl implements AlipayServiceAPI {
 
     @Reference(interfaceClass = OrderServiceAPI.class, check = false, group = "order2018")

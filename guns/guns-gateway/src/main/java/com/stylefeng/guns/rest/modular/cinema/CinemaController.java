@@ -29,7 +29,7 @@ public class CinemaController {
     private static final String IMG_PRE = "http://www.chengix.com";
 
     @Reference(interfaceClass = CinemaServiceAPI.class,
-            check = false, cache = "lru", connections = 20)
+            check = false)
     private CinemaServiceAPI cinemaServiceApi;
 
     @Reference(interfaceClass = OrderServiceAPI.class, check = false)

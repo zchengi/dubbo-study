@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
     // todo 暂时设置为 false，项目启动的时候不检测是否有 Dubbo 提供者
-    @Reference(interfaceClass = UserAPI.class,check = false)
+    @Reference(interfaceClass = UserAPI.class, check = false)
     private UserAPI userAPI;
 
     @PostMapping("/register")
